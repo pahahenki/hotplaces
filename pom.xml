@@ -7,6 +7,26 @@
     <version>1.0-SNAPSHOT</version>
     <name>hotplaces Maven Webapp</name>
     <url>http://maven.apache.org</url>
+    <!--DEVELOPPEURS DU PROJET-->
+    <developers>
+        <developer>
+            <id>swan</id>
+            <name>Swan ENGILBERGE</name>
+            <timezone>+1</timezone>
+        </developer>
+        <developer>
+            <id>hedi</id>
+            <name>Hedi HEDDA</name>
+            <timezone>+1</timezone>
+        </developer>
+        <developer>
+            <id>nadir</id>
+            <name>Nadir OULEHA</name>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+    
+    
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -15,6 +35,14 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <repositories>
+        <!-- local repository for dependencies not available on central repositories -->
+        <repository>
+            <id>project.local</id>
+            <name>project</name>
+            <url>file:${project.basedir}/repository</url>
+        </repository>
+    </repositories>
     <build>
         
         <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
@@ -24,7 +52,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.0</version>
                 <configuration>
-                    <path>/</path>
+                    <path>/webapp/coucou</path>
                 </configuration>
             </plugin>
         </plugins>
