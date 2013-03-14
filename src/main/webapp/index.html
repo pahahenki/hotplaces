@@ -2,10 +2,24 @@
 <body>
 <h2>Hello World!</h2>
 
+<div id='msg'></div>
+
 <script>
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET","http://localhost:8080/webapp/coucou",true);
 	xhr.send(null);
+	
+	xhr.onreadystatechange = function() { 
+    if (xhr.readyState == 4 && xhr.status == 200) {
+ 
+        document.getElementById('msg').innerHTML = '*' + xhr.responseText + '*';
+ 
+    } else {
+		document.getElementById('msg').innerHTML = 'error';
+ 
+    }
+ 
+};
 
 </script>
 
