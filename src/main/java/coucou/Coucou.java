@@ -1,5 +1,5 @@
+package coucou;
 
-/*
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,4 +21,3 @@ public class Coucou {
 	
 }
 
-*/
