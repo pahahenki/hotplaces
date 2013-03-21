@@ -12,7 +12,7 @@
 	xhr.onreadystatechange = function() { 
     if (xhr.readyState == 4 && xhr.status == 200) {
  
-        document.getElementById('msg').innerHTML = '*' + xhr.responseText + '*';
+        document.getElementById('msg').innerHTML = xhr.responseText;
  
     } else {
 		document.getElementById('msg').innerHTML = 'error';
