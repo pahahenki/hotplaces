@@ -17,9 +17,19 @@
         var i=0;
         var reponse = xhr.responseText;
         var jsonReponse= JSON.parse(reponse);
-        document.getElementById('msg').innerHTML = reponse;
-        alert(jsonReponse.grid5000);
+        document.getElementById('msg').innerHTML = "fichier: </br>" +reponse +"</br>";
+        var listSite = jsonReponse.grid5000;
         
+       document.getElementById('stat').innerHTML = "</br> nombre de site: " + listSite.length + "</br> ";
+        document.getElementById('stat').innerHTML += "</br> liste de site: </br> ";
+
+        while(i < listSite.length){
+            document.getElementById('stat').innerHTML += listSite[i].id + ", " +listSite[i].Cluster.length + " cluster " ;
+            i++;
+        }
+        
+        
+
  
     } else {
 		document.getElementById('msg').innerHTML = 'error';
