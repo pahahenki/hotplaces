@@ -1,5 +1,9 @@
-<style>
+
  
-text:{font-size:36px;}
- 
-</style>
+.cell {
+ color: red;
+ border: 2px solid blue;
+ position: absolute;    
+  
+    
+}
