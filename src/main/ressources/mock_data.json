@@ -124,6 +124,91 @@
 							]
 							
 							
+						},
+
+
+						{
+
+							"id": "Grenoble",
+							"path": "grid5000.Grenoble",
+
+							Cluster: [
+
+										{
+											"id": "AutoGrill",
+											"path": "grid5000.Bordeaux.AutoGrill",
+											"etat" : "UP",
+
+											Node: [
+
+													{
+														"id": "node1",
+														"path": "grid5000.Grenoble.AutoGrill.node1",
+
+														VM: [
+
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Grenoble.AutoGrill.node1.VM1",
+																	"etat": "UP"
+																}
+														]
+													},
+
+													{
+														"id": "node2",
+														"path": "grid5000.Grenoble.AutoGrill.node2",
+
+														VM: [
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Grenoble.AutoGrill.node2.VM1",
+																	"etat": "UP"
+																},
+
+																{
+																	"id": "VM2",
+																	"path": "grid5000.Grenoble.AutoGrill.node2.VM2",
+																	"etat": "DOWN"
+																},
+
+																{
+																	"id": "VM3",
+																	"path": "grid5000.Grenoble.AutoGrill.node2.VM3",
+																	"etat": "UP"
+																}
+														]
+													},
+
+													{
+														"id": "node3",
+														"path": "grid5000.Grenoble.AutoGrill.node3",
+
+														VM: [
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Grenoble.AutoGrill.node3.VM1",
+																	"etat": "UP"
+																}
+														]
+													}
+											]
+										}
+							]
+
+						},
+
+						{
+							"id": "Lille",
+							"path": "grid5000.Lille",
+
+							Cluster: [
+										{
+											"id": "transatlantique",
+											"path": "grid5000.Lille.transatlantique",
+											"etat": "DOWN"
+										}
+							]
 						}
 
 	]
