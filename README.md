@@ -18,7 +18,7 @@ résout les dépendances, compile et package la webapp.
 en sortie un fichier .war dans le répertoire 'target' servant a déployer la webapp sur le servlet
 
 
-	$ mv tomcat7:run
+	$ mvn tomcat7:run
 
 déploie le war dans un server tomcat embarqué par maven (plugin maven)
 la webapp tourne sur http://localhost:8080.
