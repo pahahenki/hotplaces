@@ -16,8 +16,9 @@
  
         var i=0;
         var reponse = xhr.responseText;
-        var jsonReponse= eval('(' + reponse + ')');
-        document.getElementById('msg').innerHTML = jsonReponse;
+        var jsonReponse= JSON.parse(reponse);
+        document.getElementById('msg').innerHTML = reponse;
+        alert(jsonReponse.senario);
         while(i< jsonReponse.length){
             
             document.getElementById('stat').innerHTML = jsonReponse[i];
