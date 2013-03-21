@@ -1,37 +1,37 @@
 {
 
-	"grid5000.fr": [
+	"grid5000": [
 
 						{
 							"id": "Bordeaux",
-							"path": "grid5000.fr.Bordeaux",
+							"path": "grid5000.Bordeaux",
 
 							Cluster:[
 										{
 											"id": "Parapente",
-											"path": "grid5000.fr.Bordeaux.Parapente",
+											"path": "grid5000.Bordeaux.Parapente",
 											
 											Node:[
 													{
 														"id": "node1",
-														"path": "grid5000.fr.Bordeaux.Parapente.node1",
+														"path": "grid5000.Bordeaux.Parapente.node1",
 
 														VM:[
 																{
 																	"id": "VM1",
-																	"path": "grid5000.fr.Bordeaux.Parapente.node1.VM1",
+																	"path": "grid5000.Bordeaux.Parapente.node1.VM1",
 																	"etat": "UP"
 																},
 
 																{
 																	"id": "VM2",
-																	"path": "grid5000.fr.Bordeaux.Parapente.node1.VM2",
+																	"path": "grid5000.Bordeaux.Parapente.node1.VM2",
 																	"etat": "DOWN"
 																},
 
 																{
 																	"id": "VM3",
-																	"path": "grid5000.fr.Bordeaux.Parapente.node1.VM3",
+																	"path": "grid5000.Bordeaux.Parapente.node1.VM3",
 																	"etat": "UP"
 																}
 														]
@@ -39,24 +39,49 @@
 
 													{
 														"id": "node2",
-														"path": "grid5000.fr.Bordeaux.Parapente.node2",
+														"path": "grid5000.Bordeaux.Parapente.node2",
 
 														VM:[
 																{
 																	"id": "VM1",
-																	"path": "grid5000.fr.Bordeaux.Parapente.node2.VM1",
+																	"path": "grid5000.Bordeaux.Parapente.node2.VM1",
 																	"etat": "UP"
 																},
 
 																{
 																	"id": "VM2",
-																	"path": "grid5000.fr.Bordeaux.Parapente.node2.VM2",
+																	"path": "grid5000.Bordeaux.Parapente.node2.VM2",
 																	"etat": "DOWN"
 																},
 
 																{
 																	"id": "VM3",
-																	"path": "grid5000.fr.Bordeaux.Parapente.node2.VM3",
+																	"path": "grid5000.Bordeaux.Parapente.node2.VM3",
+																	"etat": "UP"
+																}
+														]
+													},
+
+													{
+														"id": "node3",
+														"path": "grid5000.Bordeaux.Parapente.node3",
+
+														VM:[
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Bordeaux.Parapente.node3.VM1",
+																	"etat": "UP"
+																},
+
+																{
+																	"id": "VM2",
+																	"path": "grid5000.Bordeaux.Parapente.node3.VM2",
+																	"etat": "DOWN"
+																},
+
+																{
+																	"id": "VM3",
+																	"path": "grid5000.Bordeaux.Parapente.node3.VM3",
 																	"etat": "UP"
 																}
 														]
