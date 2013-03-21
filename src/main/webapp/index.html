@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <html>
 <body>
 <h2>Hello World!</h2>
 
 <div id='msg'></div>
+<div id='stat'></div>
 
 <script>
 	var xhr = new XMLHttpRequest();
@@ -12,7 +14,16 @@
 	xhr.onreadystatechange = function() { 
     if (xhr.readyState == 4 && xhr.status == 200) {
  
-        document.getElementById('msg').innerHTML = xhr.responseText;
+        var i=0;
+        var reponse = xhr.responseText;
+        var jsonReponse= eval('(' + reponse + ')');
+        document.getElementById('msg').innerHTML = jsonReponse;
+        while(i< jsonReponse.length){
+            
+            document.getElementById('stat').innerHTML = jsonReponse[i];
+            
+        }
+        
  
     } else {
 		document.getElementById('msg').innerHTML = 'error';
