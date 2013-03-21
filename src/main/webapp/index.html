@@ -18,12 +18,7 @@
         var reponse = xhr.responseText;
         var jsonReponse= JSON.parse(reponse);
         document.getElementById('msg').innerHTML = reponse;
-        alert(jsonReponse.senario);
-        while(i< jsonReponse.length){
-            
-            document.getElementById('stat').innerHTML = jsonReponse[i];
-            
-        }
+        alert(jsonReponse.grid5000);
         
  
     } else {
