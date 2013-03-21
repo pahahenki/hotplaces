@@ -26,7 +26,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>coucou</servlet-name>
-        <url-pattern>/api/*</url-pattern>
+        <url-pattern>/webapp/*</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>

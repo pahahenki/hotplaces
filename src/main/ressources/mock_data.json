@@ -1,0 +1,603 @@
+{
+
+	"grid5000.fr": {
+			"Bordeaux": {
+
+					"Paravent": {
+
+							"node1": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+
+									"VM4":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node2": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node3": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+							},
+
+							"etat" : "UP"
+					}
+
+					"Paradent": {
+
+							"node1": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node2": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+
+									"VM4":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node3": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"etat" : "UP"
+					}
+
+					"Paraplegique": {
+
+							"node1": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+							},
+
+							"node2": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"etat" : "UP"
+
+					}
+
+			}
+
+			"Grenoble": {
+
+					"Autobus": {
+
+							"node1": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node2": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node3": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+
+									"VM4":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node4": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"etat" : "UP"
+					}
+
+					"Autostop": {
+
+							"node1": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node2": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+
+									"VM4":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"etat" : "UP"
+					}
+
+					"Automatique": {
+
+							"node1": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+							},
+
+							"node2": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+
+							},
+
+							"node3": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+							},
+
+							"etat" : "UP"
+					}
+			}
+
+			"Lille": {
+
+					"coordonateur": {
+
+							"node1": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node2": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node3": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node4": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"etat" : "UP"
+					}
+			}
+
+			"Luxembourg": {
+
+					"metabolisme": {
+
+							"node1": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"etat" : "UP"
+					}
+
+					"metastase": {
+
+							"node1": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node2": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"etat" : "UP"
+					}
+			}
+
+			"Lyon": {
+
+					"antimatiere": {
+
+							"node1": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node2": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"etat" : "UP"
+					}
+
+					"antinomique": {
+
+							"node1": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node2": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"node3": {
+
+									"VM1":{
+										
+										"etat" : "UP"
+									}
+
+									"VM2":{
+										
+										"etat" : "UP"
+									}
+
+									"VM3":{
+										
+										"etat" : "UP"
+									}
+							},
+
+							"etat" : "UP"
+					}
+			}
+
+			"Nancy": {}
+
+			"Nantes": {}
+
+			"Reims": {}
+
+			"Rennes": {}
+
+			"Sophia-Antipolis": {}
+
+			"Toulouse": {}
+
+
+	}
+
+}
