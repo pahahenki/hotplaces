@@ -7,16 +7,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/webapp/coucou")
+@Path("/coucou")
 public class Coucou {
 	
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response repondre() {
-		
-		
-		return Response.ok().build();
+		return Response.ok("OK").build();
 	}
 	
 	
