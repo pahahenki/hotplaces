@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <body>
 <!--<h2>Hello World!</h2>-->
@@ -7,9 +8,13 @@
    </div>
 <div class="hashtags"></div>
 
-<div id='msg'></div>
 <!--<script type="text/javascript" src="/js/scriptTreemap.js"></script>-->
 <script type="text/javascript" src="/js/exemple.js"></script>
+<div id='msg'></div>
+
+
+<div id='stat'></div>
+
 
 <script>
 	var xhr = new XMLHttpRequest();
@@ -19,7 +24,30 @@
 	xhr.onreadystatechange = function() { 
     if (xhr.readyState == 4 && xhr.status == 200) {
  
-        document.getElementById('msg').innerHTML = '*' + xhr.responseText + '*';
+        var i=0;
+        var reponse = xhr.responseText;
+        var jsonReponse= JSON.parse(reponse);
+        document.getElementById('msg').innerHTML = "fichier: </br>" +reponse +"</br>";
+        var listSite = jsonReponse.grid5000;
+        
+       document.getElementById('stat').innerHTML = "</br> nombre de site: " + listSite.length + "</br> ";
+        document.getElementById('stat').innerHTML += "</br> liste de site: </br> ";
+
+        while(i < listSite.length){
+
+            document.getElementById('stat').innerHTML += listSite[i].id + ", " +listSite[i].Cluster.length + " cluster :" ;
+            var cluster= listSite[i].Cluster
+
+            for (cl in cluster){
+                document.getElementById('stat').innerHTML += cluster[cl].id + " " + cluster[cl].etat + ", " ;
+                
+            }
+            document.getElementById('stat').innerHTML += "</br>";
+            i++;
+        }
+        
+        
+
  
     } else {
 		document.getElementById('msg').innerHTML = 'error';

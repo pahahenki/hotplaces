@@ -1,603 +1,216 @@
 {
 
-	"grid5000.fr": {
-			"Bordeaux": {
-
-					"Paravent": {
-
-							"node1": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-
-									"VM4":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node2": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node3": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-							},
-
-							"etat" : "UP"
-					}
-
-					"Paradent": {
-
-							"node1": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node2": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-
-									"VM4":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node3": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"etat" : "UP"
-					}
-
-					"Paraplegique": {
-
-							"node1": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-							},
-
-							"node2": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"etat" : "UP"
-
-					}
-
-			}
-
-			"Grenoble": {
-
-					"Autobus": {
-
-							"node1": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node2": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node3": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-
-									"VM4":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node4": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"etat" : "UP"
-					}
-
-					"Autostop": {
-
-							"node1": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node2": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-
-									"VM4":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"etat" : "UP"
-					}
-
-					"Automatique": {
-
-							"node1": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-							},
-
-							"node2": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-
-							},
-
-							"node3": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-							},
-
-							"etat" : "UP"
-					}
-			}
-
-			"Lille": {
-
-					"coordonateur": {
-
-							"node1": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node2": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node3": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node4": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"etat" : "UP"
-					}
-			}
-
-			"Luxembourg": {
-
-					"metabolisme": {
-
-							"node1": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"etat" : "UP"
-					}
-
-					"metastase": {
-
-							"node1": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node2": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"etat" : "UP"
-					}
-			}
-
-			"Lyon": {
-
-					"antimatiere": {
-
-							"node1": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node2": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"etat" : "UP"
-					}
-
-					"antinomique": {
-
-							"node1": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node2": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"node3": {
-
-									"VM1":{
-										
-										"etat" : "UP"
-									}
-
-									"VM2":{
-										
-										"etat" : "UP"
-									}
-
-									"VM3":{
-										
-										"etat" : "UP"
-									}
-							},
-
-							"etat" : "UP"
-					}
-			}
-
-			"Nancy": {}
-
-			"Nantes": {}
-
-			"Reims": {}
-
-			"Rennes": {}
-
-			"Sophia-Antipolis": {}
-
-			"Toulouse": {}
-
-
-	}
+	"grid5000": [
+
+						{
+							"id": "Bordeaux",
+							"path": "grid5000.Bordeaux",
+
+							Cluster:[
+										{
+											"id": "Parapente",
+											"path": "grid5000.Bordeaux.Parapente",
+											"etat" : "UP",
+											
+											Node:[
+													{
+														"id": "node1",
+														"path": "grid5000.Bordeaux.Parapente.node1",
+
+														VM:[
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Bordeaux.Parapente.node1.VM1",
+																	"etat": "UP"
+																},
+
+																{
+																	"id": "VM2",
+																	"path": "grid5000.Bordeaux.Parapente.node1.VM2",
+																	"etat": "DOWN"
+																},
+
+																{
+																	"id": "VM3",
+																	"path": "grid5000.Bordeaux.Parapente.node1.VM3",
+																	"etat": "UP"
+																}
+														]
+													},
+
+													{
+														"id": "node2",
+														"path": "grid5000.Bordeaux.Parapente.node2",
+
+														VM:[
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Bordeaux.Parapente.node2.VM1",
+																	"etat": "UP"
+																},
+
+																{
+																	"id": "VM2",
+																	"path": "grid5000.Bordeaux.Parapente.node2.VM2",
+																	"etat": "DOWN"
+																},
+
+																{
+																	"id": "VM3",
+																	"path": "grid5000.Bordeaux.Parapente.node2.VM3",
+																	"etat": "UP"
+																}
+														]
+													},
+
+													{
+														"id": "node3",
+														"path": "grid5000.Bordeaux.Parapente.node3",
+
+														VM:[
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Bordeaux.Parapente.node3.VM1",
+																	"etat": "UP"
+																},
+
+																{
+																	"id": "VM2",
+																	"path": "grid5000.Bordeaux.Parapente.node3.VM2",
+																	"etat": "DOWN"
+																},
+
+																{
+																	"id": "VM3",
+																	"path": "grid5000.Bordeaux.Parapente.node3.VM3",
+																	"etat": "UP"
+																}
+														]
+													}
+
+											]
+										},
+
+										{
+											"id": "Paravent",
+											"path": "grid5000.Bordeaux.Paravent",
+											"etat": "UP",
+
+											Node: [
+
+													{
+														"id": "node1",
+														"path": "grid5000.Bordeaux.Paravent.node1",
+
+														VM: [
+
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Bordeaux.Paravent.node1.VM1",
+																	"etat": "DOWN"
+																},
+
+																{
+																	"id": "VM2",
+																	"path": "grid5000.Bordeaux.Paravent.node1.VM2",
+																	"etat": "UP"
+																}
+														]
+													}
+											]
+											
+										}
+										
+							]
+							
+							
+						},
+
+
+						{
+
+							"id": "Grenoble",
+							"path": "grid5000.Grenoble",
+
+							Cluster: [
+
+										{
+											"id": "AutoGrill",
+											"path": "grid5000.Bordeaux.AutoGrill",
+											"etat" : "UP",
+
+											Node: [
+
+													{
+														"id": "node1",
+														"path": "grid5000.Grenoble.AutoGrill.node1",
+
+														VM: [
+
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Grenoble.AutoGrill.node1.VM1",
+																	"etat": "UP"
+																}
+														]
+													},
+
+													{
+														"id": "node2",
+														"path": "grid5000.Grenoble.AutoGrill.node2",
+
+														VM: [
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Grenoble.AutoGrill.node2.VM1",
+																	"etat": "UP"
+																},
+
+																{
+																	"id": "VM2",
+																	"path": "grid5000.Grenoble.AutoGrill.node2.VM2",
+																	"etat": "DOWN"
+																},
+
+																{
+																	"id": "VM3",
+																	"path": "grid5000.Grenoble.AutoGrill.node2.VM3",
+																	"etat": "UP"
+																}
+														]
+													},
+
+													{
+														"id": "node3",
+														"path": "grid5000.Grenoble.AutoGrill.node3",
+
+														VM: [
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Grenoble.AutoGrill.node3.VM1",
+																	"etat": "UP"
+																}
+														]
+													}
+											]
+										}
+							]
+
+						},
+
+						{
+							"id": "Lille",
+							"path": "grid5000.Lille",
+
+							Cluster: [
+										{
+											"id": "transatlantique",
+											"path": "grid5000.Lille.transatlantique",
+											"etat": "DOWN"
+										}
+							]
+						}
+
+	]
 
 }

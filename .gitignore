@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 target
 .idea
 *.iml
 
 src/main/.DS_Store
+=======
+
+src/main/.DS_Store
+
+target/tomcat/logs/access_log.2013-03-21
+>>>>>>> fix
