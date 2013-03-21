@@ -19,7 +19,7 @@ public class Coucou {
 	public Response repondre() {
         JSONObject data=null;
         String chaine="";
-        String fichier ="./src/main/ressources/exemple.json";
+        String fichier ="./src/main/ressources/mock_data.json";
         
         //lecture du fichier texte
         try{

@@ -1,13 +1,74 @@
 {
 
-	"grid5000.fr": {
-			"Bordeaux": {
-				"parapluie": {
-					"node1": {
-						"VM1": "UP"
-					}
-				}
-			}
-		}
-}
+	"grid5000.fr": [
 
+						{
+							"id": "Bordeaux",
+							"path": "grid5000.fr.Bordeaux",
+
+							Cluster:[
+										{
+											"id": "Parapente",
+											"path": "grid5000.fr.Bordeaux.Parapente",
+											
+											Node:[
+													{
+														"id": "node1",
+														"path": "grid5000.fr.Bordeaux.Parapente.node1",
+
+														VM:[
+																{
+																	"id": "VM1",
+																	"path": "grid5000.fr.Bordeaux.Parapente.node1.VM1",
+																	"etat": "UP"
+																},
+
+																{
+																	"id": "VM2",
+																	"path": "grid5000.fr.Bordeaux.Parapente.node1.VM2",
+																	"etat": "DOWN"
+																},
+
+																{
+																	"id": "VM3",
+																	"path": "grid5000.fr.Bordeaux.Parapente.node1.VM3",
+																	"etat": "UP"
+																}
+														]
+													},
+
+													{
+														"id": "node2",
+														"path": "grid5000.fr.Bordeaux.Parapente.node2",
+
+														VM:[
+																{
+																	"id": "VM1",
+																	"path": "grid5000.fr.Bordeaux.Parapente.node2.VM1",
+																	"etat": "UP"
+																},
+
+																{
+																	"id": "VM2",
+																	"path": "grid5000.fr.Bordeaux.Parapente.node2.VM2",
+																	"etat": "DOWN"
+																},
+
+																{
+																	"id": "VM3",
+																	"path": "grid5000.fr.Bordeaux.Parapente.node2.VM3",
+																	"etat": "UP"
+																}
+														]
+													}
+
+											]
+										}
+							]
+							
+							
+						}
+
+	]
+
+}
