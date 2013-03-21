@@ -10,6 +10,7 @@
 										{
 											"id": "Parapente",
 											"path": "grid5000.Bordeaux.Parapente",
+											"etat" : "UP",
 											
 											Node:[
 													{
@@ -88,7 +89,38 @@
 													}
 
 											]
+										},
+
+										{
+											"id": "Paravent",
+											"path": "grid5000.Bordeaux.Paravent",
+											"etat": "UP",
+
+											Node: [
+
+													{
+														"id": "node1",
+														"path": "grid5000.Bordeaux.Paravent.node1",
+
+														VM: [
+
+																{
+																	"id": "VM1",
+																	"path": "grid5000.Bordeaux.Paravent.node1.VM1",
+																	"etat": "DOWN"
+																},
+
+																{
+																	"id": "VM2",
+																	"path": "grid5000.Bordeaux.Paravent.node1.VM2",
+																	"etat": "UP"
+																}
+														]
+													}
+											]
+											
 										}
+										
 							]
 							
 							
