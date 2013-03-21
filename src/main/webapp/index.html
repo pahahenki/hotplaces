@@ -24,7 +24,14 @@
         document.getElementById('stat').innerHTML += "</br> liste de site: </br> ";
 
         while(i < listSite.length){
-            document.getElementById('stat').innerHTML += listSite[i].id + ", " +listSite[i].Cluster.length + " cluster " ;
+            document.getElementById('stat').innerHTML += listSite[i].id + ", " +listSite[i].Cluster.length + " cluster :" ;
+            var cluster= listSite[i].Cluster
+
+            for (cl in cluster){
+                document.getElementById('stat').innerHTML += cluster[cl].id ;
+                
+            }
+            document.getElementById('stat').innerHTML += "</br>";
             i++;
         }
         
