@@ -8,6 +8,7 @@
    </div>
 <div class="hashtags"></div>
 
+<<<<<<< HEAD
 <div id='msg'></div>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -17,8 +18,15 @@
 <script type="text/javascript" src="/js/scriptTreemap.js"></script>
 >>>>>>> Mise en place des composants pour le treemap de d3.org
 =======
+=======
+>>>>>>> merge dev on Treemap
 <!--<script type="text/javascript" src="/js/scriptTreemap.js"></script>-->
 <script type="text/javascript" src="/js/exemple.js"></script>
+<div id='msg'></div>
+
+
+<div id='stat'></div>
+
 
 >>>>>>> Ajout d'un autre exemple
 <script>
@@ -44,7 +52,11 @@
             var cluster= listSite[i].Cluster
 
             for (cl in cluster){
+<<<<<<< HEAD
                 document.getElementById('stat').innerHTML += cluster[cl].id + " " + cluster[cl].state + ", " ;
+=======
+                document.getElementById('stat').innerHTML += cluster[cl].id + " " + cluster[cl].etat + ", " ;
+>>>>>>> merge dev on Treemap
                 
             }
             document.getElementById('stat').innerHTML += "</br>";
