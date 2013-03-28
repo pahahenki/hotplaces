@@ -4,86 +4,72 @@
 
 						{
 							"id": "Bordeaux",
-							"path": "grid5000.Bordeaux",
 
 							Cluster:[
 										{
 											"id": "Parapente",
-											"path": "grid5000.Bordeaux.Parapente",
-											"etat" : "UP",
+											"state" : "UP",
 											
 											Node:[
 													{
 														"id": "node1",
-														"path": "grid5000.Bordeaux.Parapente.node1",
 
 														VM:[
 																{
 																	"id": "VM1",
-																	"path": "grid5000.Bordeaux.Parapente.node1.VM1",
-																	"etat": "UP"
+																	"state": "UP"
 																},
 
 																{
 																	"id": "VM2",
-																	"path": "grid5000.Bordeaux.Parapente.node1.VM2",
-																	"etat": "DOWN"
+																	"state": "DOWN"
 																},
 
 																{
 																	"id": "VM3",
-																	"path": "grid5000.Bordeaux.Parapente.node1.VM3",
-																	"etat": "UP"
+																	"state": "UP"
 																}
 														]
 													},
 
 													{
 														"id": "node2",
-														"path": "grid5000.Bordeaux.Parapente.node2",
 
 														VM:[
 																{
 																	"id": "VM1",
-																	"path": "grid5000.Bordeaux.Parapente.node2.VM1",
-																	"etat": "UP"
+																	"state": "UP"
 																},
 
 																{
 																	"id": "VM2",
-																	"path": "grid5000.Bordeaux.Parapente.node2.VM2",
-																	"etat": "DOWN"
+																	"state": "DOWN"
 																},
 
 																{
 																	"id": "VM3",
-																	"path": "grid5000.Bordeaux.Parapente.node2.VM3",
-																	"etat": "UP"
+																	"state": "UP"
 																}
 														]
 													},
 
 													{
 														"id": "node3",
-														"path": "grid5000.Bordeaux.Parapente.node3",
 
 														VM:[
 																{
 																	"id": "VM1",
-																	"path": "grid5000.Bordeaux.Parapente.node3.VM1",
-																	"etat": "UP"
+																	"state": "UP"
 																},
 
 																{
 																	"id": "VM2",
-																	"path": "grid5000.Bordeaux.Parapente.node3.VM2",
-																	"etat": "DOWN"
+																	"state": "DOWN"
 																},
 
 																{
 																	"id": "VM3",
-																	"path": "grid5000.Bordeaux.Parapente.node3.VM3",
-																	"etat": "UP"
+																	"state": "UP"
 																}
 														]
 													}
@@ -93,27 +79,23 @@
 
 										{
 											"id": "Paravent",
-											"path": "grid5000.Bordeaux.Paravent",
-											"etat": "UP",
+											"state": "UP",
 
 											Node: [
 
 													{
 														"id": "node1",
-														"path": "grid5000.Bordeaux.Paravent.node1",
 
 														VM: [
 
 																{
 																	"id": "VM1",
-																	"path": "grid5000.Bordeaux.Paravent.node1.VM1",
-																	"etat": "DOWN"
+																	"state": "DOWN"
 																},
 
 																{
 																	"id": "VM2",
-																	"path": "grid5000.Bordeaux.Paravent.node1.VM2",
-																	"etat": "UP"
+																	"state": "UP"
 																}
 														]
 													}
@@ -130,65 +112,55 @@
 						{
 
 							"id": "Grenoble",
-							"path": "grid5000.Grenoble",
 
 							Cluster: [
 
 										{
 											"id": "AutoGrill",
-											"path": "grid5000.Bordeaux.AutoGrill",
-											"etat" : "UP",
+											"state" : "UP",
 
 											Node: [
 
 													{
 														"id": "node1",
-														"path": "grid5000.Grenoble.AutoGrill.node1",
 
 														VM: [
 
 																{
 																	"id": "VM1",
-																	"path": "grid5000.Grenoble.AutoGrill.node1.VM1",
-																	"etat": "UP"
+																	"state": "UP"
 																}
 														]
 													},
 
 													{
 														"id": "node2",
-														"path": "grid5000.Grenoble.AutoGrill.node2",
 
 														VM: [
 																{
 																	"id": "VM1",
-																	"path": "grid5000.Grenoble.AutoGrill.node2.VM1",
-																	"etat": "UP"
+																	"state": "UP"
 																},
 
 																{
 																	"id": "VM2",
-																	"path": "grid5000.Grenoble.AutoGrill.node2.VM2",
-																	"etat": "DOWN"
+																	"state": "DOWN"
 																},
 
 																{
 																	"id": "VM3",
-																	"path": "grid5000.Grenoble.AutoGrill.node2.VM3",
-																	"etat": "UP"
+																	"state": "UP"
 																}
 														]
 													},
 
 													{
 														"id": "node3",
-														"path": "grid5000.Grenoble.AutoGrill.node3",
 
 														VM: [
 																{
 																	"id": "VM1",
-																	"path": "grid5000.Grenoble.AutoGrill.node3.VM1",
-																	"etat": "UP"
+																	"state": "UP"
 																}
 														]
 													}
@@ -200,13 +172,11 @@
 
 						{
 							"id": "Lille",
-							"path": "grid5000.Lille",
 
 							Cluster: [
 										{
 											"id": "transatlantique",
-											"path": "grid5000.Lille.transatlantique",
-											"etat": "DOWN"
+											"state": "DOWN"
 										}
 							]
 						}
