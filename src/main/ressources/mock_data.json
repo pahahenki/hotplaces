@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	"grid5000": [
 
@@ -325,6 +326,8 @@
 	]
 
 =======
+=======
+>>>>>>> fix conflict
  "name": "grid5000",
  "size": 5734,
  "children": [
@@ -401,5 +404,5 @@
    ]
   }
  ]
->>>>>>> remaniment du JSON ajout d'un fichier test.html qui affiche la treemap du json
+
 }
