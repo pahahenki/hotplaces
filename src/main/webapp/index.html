@@ -11,6 +11,7 @@
 <!--<script type="text/javascript" src="/js/scriptTreemap.js"></script>-->
 <script type="text/javascript" src="/js/exemple.js"></script>
 <div id='msg'></div>
+<div id='stat'></div>
 
 
 <div id='stat'></div>
@@ -39,7 +40,9 @@
             var cluster= listSite[i].Cluster
 
             for (cl in cluster){
-                document.getElementById('stat').innerHTML += cluster[cl].id + " " + cluster[cl].etat + ", " ;
+
+                document.getElementById('stat').innerHTML += cluster[cl].id + " " + cluster[cl].state + ", " ;
+
                 
             }
             document.getElementById('stat').innerHTML += "</br>";
