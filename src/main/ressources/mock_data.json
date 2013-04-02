@@ -334,7 +334,7 @@
   {
    "name": "Bordeau",
    "size": 5734,
-   "children": [
+   "cluster": [
     {
      "name": "Parapente",
      "size": 2734,
@@ -359,7 +359,7 @@
    {
    "name": "Grenoble",
    "size": 3734,
-   "children": [
+   "cluster": [
     {
      "name": "AutoGrill",
      "size": 2534,
@@ -390,7 +390,7 @@
    {
    "name": "Lille",
    "size": 1734,
-   "children": [
+   "cluster": [
     {
      "name": "Transatlantique",
      "size": 534,

@@ -32,6 +32,9 @@ form {
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
+
+
+
 var margin = {top: 40, right: 10, bottom: 10, left: 10},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -39,9 +42,14 @@ var margin = {top: 40, right: 10, bottom: 10, left: 10},
 var color = d3.scale.category20c();
 
 var treemap = d3.layout.treemap()
+	.children(function(d, depth) { return depth===3 ? null : d.children; })
     .size([width, height])
     .sticky(true)
-    .value(function(d) { return d.size; });
+    .value(function(d) { return d.size? d.size : 3000 ; });
+    
+    
+    
+    //ajout une div a  body avec les style en question
 
 var div = d3.select("body").append("div")
     .style("position", "relative")
@@ -51,13 +59,28 @@ var div = d3.select("body").append("div")
     .style("top", margin.top + "px");
 
 d3.json("mock_data.json", function(error, root) {
-  var node = div.datum(root).selectAll(".node")
-      .data(treemap.nodes)
-    .enter().append("div")
+	var basenode = treemap.nodes(root);
+	var children=  basenode.filter(function(d) { return !d.children; });
+	var parent = basenode.filter(function(d) { return d.children; });
+	
+	console.log(basenode);
+	console.log(children);
+	console.log(parent);
+	
+  var node = div.datum(root)
+  	.selectAll(".node")
+      .data(treemap.nodes);
+      
+    node.enter().append("div")
       .attr("class", "node")
       .call(position)
-      .style("background", function(d) { return d.Nodes ? color(d.name) : null; })
-      .text(function(d) { return d.vm ? null : d.name; });
+      .style("background", function(d) { return d.children ? color(d.name) : null; })
+      .text(function(d) { return d.children ? d.name : null })
+      .on("click", function(d) {alert(d.name + "  " + d.depth); });
+      
+      node.exit().remove();
+      
+      
 
   d3.selectAll("input").on("change", function change() {
     var value = this.value === "count"
