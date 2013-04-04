@@ -58,7 +58,7 @@ var div = d3.select("body").append("div")
     .style("left", margin.left + "px")
     .style("top", margin.top + "px");
 
-d3.json("mock_data.json", function(error, root) {
+d3.json("../ressources/mock_data.json", function(error, root) {
 	var basenode = treemap.nodes(root);
 	var children=  basenode.filter(function(d) { return !d.children; });
 	var parent = basenode.filter(function(d) { return d.children; });
