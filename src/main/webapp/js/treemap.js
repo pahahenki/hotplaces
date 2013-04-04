@@ -50,7 +50,11 @@ var root= treemap.nodes(g5k);
       .call(position)
       .style("background", function(d) {;return d.children ? color(d.name) : null; })
       .html(function(d) { return d.depth<3 ? "<div class= 'text"+ d.depth+"'>"+d.name +"</div>": null })
-      .on("click", function(d){zoom(d.parent);});
+      .on("click", function(d){zoom(d.parent);})
+      .on("mouseover", function(d) { pop("Name : " + d.name); })
+      .on("mouseout", function(d) { remove(); } )
+      
+      ;
       
       function zoom(d){
       console.log("parent: "+ d.parent.name);
