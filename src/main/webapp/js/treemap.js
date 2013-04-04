@@ -1,4 +1,4 @@
-var margin = {top: 100, right: 10, bottom: 10, left: 10},
+var margin = {top: 50, right: 10, bottom: 10, left: 10},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -26,7 +26,6 @@ var div = d3.select("body").append("div")
     
 
 var root= treemap.nodes(g5k);
-console.log(root[0].name);
    
 	
   var node = div.datum(root)
@@ -34,7 +33,7 @@ console.log(root[0].name);
       .data(treemap.nodes)
       .enter().append("div")
       .attr("class", "node")
-    .attr("id", function(d){ var name="";
+      .attr("id", function(d){var name="";
           var node = d;
           while(node.parent){
           if (name ==""){
@@ -46,12 +45,15 @@ console.log(root[0].name);
           }
           }
           name= node.name +"." + name;
-          return name;
-})
+          return name;})
       .call(position)
-    .style("background", function(d) {;return d.children ? color(d.name) : null; })
-      .text(function(d) { return d.depth===2 ? d.name : null });
+      .style("background", function(d) {;return d.children ? color(d.name) : null; })
+      .html(function(d) { return d.depth<3 ? "<div class= 'text"+ d.depth+"'>"+d.name +"</div>": null })
+      .on("click", function(d){zoom(d.parent);});
       
+      function zoom(d){
+      console.log("parent: "+ d.parent.name);
+}
       
 
 
