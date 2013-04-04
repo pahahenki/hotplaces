@@ -4,6 +4,7 @@
  */
 var g5k = {};
 g5k.children = [];
+g5k.name= "g5k";
 
 g5k.children[0] = makeSite("bordeaux");
 g5k.children[1] = makeSite("grenoble");
@@ -54,7 +55,7 @@ sophia.children[1] = makeCluster("helios", 56);
 sophia.children[2] = makeCluster("sol", 50);
 
 
-console.log(g5k)
+//console.log(g5k)
 
 function makeSite(id) {
 	var s = new Object();
