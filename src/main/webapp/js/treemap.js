@@ -37,7 +37,8 @@ var root= treemap.nodes(g5k);
           var node = d;
           while(node.parent){
           if (name ==""){
-            name= node.name
+            name= node.name;
+            node=node.parent;
           }
           else{
             name= node.name+ "." + name ;
