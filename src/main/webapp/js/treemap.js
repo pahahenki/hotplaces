@@ -26,8 +26,11 @@ var div = d3.select("body").append("div")
     
 
 var root= treemap.nodes(g5k);
-   
-	
+
+
+
+var eletSelect ;
+
   var node = div.datum(root)
   	.selectAll(".node")
       .data(treemap.nodes)
@@ -43,7 +46,7 @@ var root= treemap.nodes(g5k);
           else{
             name= node.name+ "." + name ;
             node=node.parent;
-          }
+          } 
           }
           name= node.name +"." + name;
           return name;})
@@ -51,16 +54,46 @@ var root= treemap.nodes(g5k);
       .style("background", function(d) {;return d.children ? color(d.name) : null; })
       .html(function(d) { return d.depth<3 ? "<div class= 'text"+ d.depth+"'>"+d.name +"</div>": null })
       .on("click", function(d){zoom(d.parent);})
-      .on("mouseover", function(d) { pop("Name : " + d.name); })
       .on("mouseout", function(d) { remove(); } )
-      
-      ;
+      .on("mouseover", function(d) {
+        pop("Name : " + d.name);
+        if(d.depth >1){
+        var name="";
+          var node = d.parent.parent;
+          while(node.parent){
+          if (name ==""){
+            name= node.name;
+            node=node.parent;
+
+          }
+          else{
+            name= node.name+ "." + name ;
+            node=node.parent;
+          }
+          }
+          name= node.name +"." + name;
+         console.log(eletSelect);
+         if(eletSelect != name && eletSelect != undefined){
+          var papa = document.getElementById(name);
+          var papa2 = document.getElementById(eletSelect);
+          papa.style.border=" solid 1px #0000FF";
+          papa2.style.border=" solid 1px #FFFFFF";
+          eletSelect = name;
+        }
+        if(eletSelect === undefined){
+          console.log("salut");
+          papa = document.getElementById(name);
+          papa.style.border = " solid 1px #0000FF";
+          eletSelect = name;
+        }
+      }
+                });
+
       
       function zoom(d){
       console.log("parent: "+ d.parent.name);
 }
       
-
 
 
   /*d3.selectAll("input").on("change", function change() {
@@ -74,7 +107,6 @@ var root= treemap.nodes(g5k);
         .duration(1500)
         .call(position);
   });*/
-
 
 function position() {
   this.style("left", function(d) { return d.x + "px"; })
