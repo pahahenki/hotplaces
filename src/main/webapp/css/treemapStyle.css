@@ -10,13 +10,14 @@ form {
   position: absolute;
   right: 10px;
   top: 10px;
+  overflow: visible;
 }
 
 .node {
   border: solid 1px white;
   font: 10px sans-serif;
   line-height: 12px;
-  overflow: hidden;
+  overflow:  hidden;
   position: absolute;
   text-indent: 2px;
 }
@@ -30,7 +31,7 @@ max-width:100%;
 	margin-right: auto;
 	margin-top: 10px;
 	overflow: visible;
-	z-index: 1;
+	z-index:1;
 }
 .text2{
 	text-align: center;
@@ -41,7 +42,7 @@ max-width:100%;
 	font-size: medium;
 	position:relative;
 	margin: auto;
-	overflow: hidden;
+	overflow: visible;
 	z-index:1;
 }
 

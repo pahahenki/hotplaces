@@ -54,7 +54,7 @@ var eletSelect ;
       .call(position)
       .style("background", function(d) {;return d.parent ? color(d.parent.name) : null; })
       .html(function(d) { return d.depth<3 ? "<div class= 'text"+ d.depth+"'>"+d.name +"</div>": null })
-      .on("click", function(d){zoom(d.parent);})
+      .on("click", function(d){return this.firstElementChild ? console.log(d.name): console.log(d.name);})
       .on("mouseout", function(d) { remove(); } )
       .on("mouseover", function(d) {
         var type = "";

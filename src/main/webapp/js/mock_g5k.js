@@ -54,6 +54,9 @@ sophia.children[0] = makeCluster("azur", 49);
 sophia.children[1] = makeCluster("helios", 56);
 sophia.children[2] = makeCluster("sol", 50);
 
+toulouse.children[0] = makeCluster("chocolatine", 51);
+toulouse.children[1] = makeCluster("chocapique", 93);
+
 
 //console.log(g5k)
 
