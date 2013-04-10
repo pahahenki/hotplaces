@@ -5,7 +5,7 @@ var margin = {top: 50, right: 10, bottom: 10, left: 10},
 var color = d3.scale.category20c();
 
 var treemap = d3.layout.treemap()
-	.children(function(d, depth) { return depth==3 ? null : d.children; })
+	.children(function(d, depth) { return depth===3 ? null : d.children; })
     .size([width, height])
     .sticky(true)
     .round(true)
@@ -52,7 +52,7 @@ var eletSelect ;
           name= node.name +"." + name;
           return name;})
       .call(position)
-      .style("background", function(d) {;return d.parent ? color(d.parent.name) : null; })
+      .style("background", function(d) {;return d.children ? color(d.name) : null; })
       .html(function(d) { return d.depth<3 ? "<div class= 'text"+ d.depth+"'>"+d.name +"</div>": null })
       .on("click", function(d){zoom(d.parent);})
       .on("mouseout", function(d) { remove(); } )
