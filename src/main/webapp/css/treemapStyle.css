@@ -57,3 +57,16 @@ max-width:100%;
     background-color: #EFEBA9;
 }
 
+
+.nodeType {
+    font-style: italic;
+}
+
+.nodeName {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.nodeParent {
+    font-size: small;
+}
