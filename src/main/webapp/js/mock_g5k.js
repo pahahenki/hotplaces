@@ -70,7 +70,7 @@ function makeCluster(id, nb) {
 	c.children=[]
 	for (var i = 1; i <= nb; i++) {
 		var n = new Object();
-		n.name = id + "-" + nb;						
+		n.name = id + "-" + i;						
 		n.children = [];
 		for (var x = 1; x < 10; x++) {
 			var vm = new Object();

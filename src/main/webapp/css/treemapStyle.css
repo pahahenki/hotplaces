@@ -30,7 +30,7 @@ max-width:100%;
 	margin-right: auto;
 	margin-top: 10px;
 	overflow: visible;
-	z-index: 4;
+	z-index: 1;
 }
 .text2{
 	text-align: center;
@@ -42,7 +42,7 @@ max-width:100%;
 	position:relative;
 	margin: auto;
 	overflow: hidden;
-	z-index: 4;
+	z-index:1;
 }
 
 .bulle {
