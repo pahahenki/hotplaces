@@ -57,7 +57,27 @@ var eletSelect ;
       .on("click", function(d){zoom(d.parent);})
       .on("mouseout", function(d) { remove(); } )
       .on("mouseover", function(d) {
-        pop("Name : " + d.name);
+        var type = "";
+        switch(d.depth) {
+            case 0: 
+                type = "Root : ";
+                break;
+            case 1 :
+                type = "Site : ";
+                break;
+            case 2 :
+                type = "Cluster : ";
+                break;
+            case 3 :
+                type = "Node : ";
+                break;
+            case 4 :
+                type = "VM : ";
+                break;
+        }
+        if(d.depth >= 1)
+            pop('<span class="nodeType">' + type + '</span><span class="nodeParent">' + d.parent.name + '.</span><span class="nodeName">' + d.name + "</span>");
+        
         if(d.depth >1){
         var name="";
           var node = d.parent.parent;
