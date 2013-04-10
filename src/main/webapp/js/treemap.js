@@ -52,7 +52,7 @@ var eletSelect ;
           name= node.name +"." + name;
           return name;})
       .call(position)
-      .style("background", function(d) {;return d.children ? color(d.name) : null; })
+      .style("background", function(d) {return d.parent ? color(d.parent.name) : null; })
       .html(function(d) { return d.depth<3 ? "<div class= 'text"+ d.depth+"'>"+d.name +"</div>": null })
       .on("click", function(d){zoom(d.parent);})
       .on("mouseout", function(d) { remove(); } )
