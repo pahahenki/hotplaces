@@ -8,6 +8,7 @@ var treemap = d3.layout.treemap()
 	.children(function(d, depth) { return depth===3 ? null : d.children; })
     .size([width, height])
     .sticky(true)
+    .round(true)
     .value(function(d) { return d.size? d.size : 3000 ; })
     .padding(1);
     
@@ -36,9 +37,22 @@ var eletSelect ;
       .data(treemap.nodes)
       .enter().append("div")
       .attr("class", "node")
-      
+      .attr("id", function(d){var name="";
+          var node = d;
+          while(node.parent){
+          if (name ==""){
+            name= node.name;
+            node=node.parent;
+          }
+          else{
+            name= node.name+ "." + name ;
+            node=node.parent;
+          } 
+          }
+          name= node.name +"." + name;
+          return name;})
       .call(position)
-      .style("background", function(d) {return d.children? color(d.name) : null; })
+      .style("background", function(d) {;return d.children ? color(d.name) : null; })
       .html(function(d) { return d.depth<3 ? "<div class= 'text"+ d.depth+"'>"+d.name +"</div>": null })
       .on("click", function(d){zoom(d.parent);})
       .on("mouseout", function(d) { remove(); } )
