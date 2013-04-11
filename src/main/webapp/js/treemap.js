@@ -52,8 +52,8 @@ var eletSelect ;
           name= node.name +"." + name;
           return name;})
       .call(position)
-      .style("background", function(d) {;return d.parent ? color(d.parent.name) : null; })
-      .html(function(d) { return d.depth<3 ? "<div class= 'text"+ d.depth+"'>"+d.name +"</div>": null })
+      .style("background", function(d) {;return (d.parent && d.depth===3) ? color(d.parent.name) : null; })
+      .html(function(d) { return d.depth<3 ? "<p class= 'text"+ d.depth+"'>"+d.name +"</p>": null })
       .on("click", function(d){return this.firstElementChild ? console.log(d.name): console.log(d.name);})
       .on("mouseout", function(d) { remove(); } )
       .on("mouseover", function(d) {
@@ -93,16 +93,16 @@ var eletSelect ;
           }
           }
           name= node.name +"." + name;
-         if(eletSelect != name && eletSelect != undefined){
-          var papa = document.getElementById(name);
-          var papa2 = document.getElementById(eletSelect);
-          papa.style.border=" solid 1px #0000FF";
-          papa2.style.border=" solid 1px #FFFFFF";
+         if(eletSelect != name && eletSelect != undefined && name !="g5k."){
+          var currentElt = document.getElementById(name);
+          var oldElt = document.getElementById(eletSelect);
+          currentElt.style.border=" solid 1px #0000FF";
+          oldElt.style.border="";
           eletSelect = name;
         }
         if(eletSelect === undefined){
-          papa = document.getElementById(name);
-          papa.style.border = " solid 1px #0000FF";
+          currentElt = document.getElementById(name);
+          currentElt.style.border = " solid 1px #0000FF";
           eletSelect = name;
         }
       }
