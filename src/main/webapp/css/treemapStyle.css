@@ -14,12 +14,38 @@ form {
 }
 
 .node {
+
   border: transparent 1px white;
   font: 10px sans-serif;
   line-height: 12px;
   overflow:  hidden;
   position: absolute;
   text-indent: 2px;
+  
+}
+
+.children {
+
+  border: transparent 1px white;
+  font: 10px sans-serif;
+  line-height: 12px;
+  overflow:  hidden;
+  position: absolute;
+  text-indent: 2px;
+  
+  
+}
+
+.parent {
+
+  border: transparent 1px white;
+  font: 10px sans-serif;
+  line-height: 12px;
+  overflow:  hidden;
+  position: absolute;
+  text-indent: 2px;
+  
+ 
 }
 
 .text1 {
@@ -57,7 +83,9 @@ max-width:100%;
     border-color: black;
     background-color: #EFEBA9;
 }
-
+.treemap{
+	z-index: 200;
+}
 
 .nodeType {
     font-style: italic;
