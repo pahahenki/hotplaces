@@ -1,4 +1,4 @@
-  
+  var memEletSelect ;
 function contextualMenu(d){
 	var type = "";
         switch(d.depth) {
@@ -50,11 +50,19 @@ function getId(d){
 }
  
 function onhover(d, div){
-			if(d.depth >1){
 			
-	        var name= getId(d.parent.parent);
-	        hightLight(d, name, div);
-	        unHightLight(d, name);
+			var dcolor= d.depth===3? 
+							d.parent.parent:
+							(d.depth===2? 
+									d.parent :
+									(d.depth ===1? 
+										d: 
+										null)
+							);
+	        var currentId= getId(dcolor);
+	        unHightLight(currentId);
+	        hightLight(currentId, div);
+	        
           
           
           
@@ -62,12 +70,13 @@ function onhover(d, div){
 
       }
 	
-}
-function unHightLight(d, name){
-	        
-	        if(eletSelect != name && eletSelect != undefined && name !="g5k."){
-         	var oldElt = document.getElementById(eletSelect);
-         	var listEltOut= document.getElementsByName(eletSelect.split(".")[1]);
+
+function unHightLight(currentId){
+			
+	        if(memEletSelect != currentId && memEletSelect != undefined && currentId !="g5k."){
+
+         	var oldElt = document.getElementById(memEletSelect);
+         	var listEltOut= document.getElementsByName(memEletSelect.split(".")[1]);
           
           for( var i = 0; i < listEltOut.length; i++){
           		var color =listEltOut[i].style.backgroundColor.slice(4,17).split(", ");
@@ -76,36 +85,29 @@ function unHightLight(d, name){
           		var r =  parseInt(color[0])+50;
           		var g = parseInt(color[1])+50;
           		var b = parseInt(color[2])+50;
-          		//console.log("color + 20 : " + r);
 	          listEltOut[i].style.backgroundColor= "rgb("+r+","+g+","+b+")";
           }
 
           oldElt.style.border="";
           oldElt.style.backgroundColor="";
-          eletSelect = name;
+          memEletSelect = undefined;
+          
         }
-	
 }
 
-function hightLight(d, name, div){
+function hightLight(name, div){
 		var currentElt = document.getElementById(name);
-          var listEltIn= document.getElementsByName(div.getAttribute("name")); 
+        var listEltIn= document.getElementsByName(div.getAttribute("name")); 
           
-         if(eletSelect != name && eletSelect != undefined && name !="g5k."){
-
+         if(memEletSelect != name && memEletSelect != undefined && name !="g5k."){
           
-          //console.log(eletSelect + "   " + eltOut);
           for( var i = 0; i < listEltIn.length; i++){
           		var color =listEltIn[i].style.backgroundColor.slice(4,17).split(", ");
-          		//console.log("avant :" +color);
-          		//console.log("b: "+color[2]);
           		
           		var r =  parseInt(color[0])-50;
           		var g = parseInt(color[1])-50;
           		var b = parseInt(color[2])-50;
-          		//console.log("color + 20 : " + r);
 	          listEltIn[i].style.backgroundColor= "rgb("+r+","+g+","+b+")";
-	          //console.log("apres: "+listNode[i].style.backgroundColor.slice(4,15).split(", "));
           }
 
          currentElt.style.border=" solid 1px rgb(230,230,230)";
@@ -113,10 +115,8 @@ function hightLight(d, name, div){
 
           
         }
-        if(eletSelect === undefined&& name !="g5k."){
+        if(memEletSelect === undefined&& name !="g5k."){
           
-          
-          //console.log(eletSelect + "   " + eltOut);
           for( var i = 0; i < listEltIn.length; i++){
           		var color =listEltIn[i].style.backgroundColor.slice(4,17).split(", ");
           		
@@ -128,7 +128,7 @@ function hightLight(d, name, div){
           
          currentElt.style.border=" solid 1px rgb(230,230,230)";
           currentElt.style.backgroundColor="rgb(230,230,230)";
-          eletSelect = name;
+          memEletSelect = name;
         }
 
 	
@@ -153,7 +153,7 @@ function follow_mouse(e) {
     //d.style.top = y + decal_y;
     //d.style.left = x + decal_x;
 
-//console.log("" + x + "," + y);
+
 
 }
 function remove() {

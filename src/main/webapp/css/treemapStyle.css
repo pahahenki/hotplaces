@@ -14,14 +14,17 @@ form {
 }
 
 .node {
-
   border: transparent 1px white;
   font: 10px sans-serif;
   line-height: 12px;
-  overflow:  hidden;
+  overflow:  visible;
   position: absolute;
+  text-align: center;
   text-indent: 2px;
+  border-color: transparent;
   
+}
+.node:hover{
 }
 
 .children {
@@ -29,9 +32,10 @@ form {
   border: transparent 1px white;
   font: 10px sans-serif;
   line-height: 12px;
-  overflow:  hidden;
+  overflow: visible;
   position: absolute;
   text-indent: 2px;
+  
   
   
 }
@@ -71,6 +75,7 @@ max-width:100%;
 	overflow: visible;
 	z-index:1;
 }
+
 
 .bulle {
     width: 100%;
