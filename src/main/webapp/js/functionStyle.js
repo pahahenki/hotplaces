@@ -18,7 +18,7 @@ function contextualMenu(d){
                 type = "VM : ";
                 break;
         }
-        if(d.depth >= 3)
+        if(d.depth > 0)
             pop('<span class="nodeType">' + type + '</span><span class="nodeParent">' + d.parent.name + '.</span><span class="nodeName">' + d.name + "</span>");
 
 }
