@@ -149,12 +149,13 @@ d3.json("g5kMock.json", function(root) {
   }
  
   function display(d) {
-   
+   /*
     grandparent
         .datum(d.parent)
         .on("click", transition)
       .select("text")
         .text(name(d));
+        */
  
     var g1 = svg.insert("g", ".grandparent")
         .datum(d)
@@ -167,11 +168,9 @@ d3.json("g5kMock.json", function(root) {
     g.filter(function(d) { return d.children; })
         .classed("children", true)
         .on("click", transition)
-
+        .on("contextmenu", function(d) {mouseDown(d);})
 ;
-
-    svg//.on("contextmenu", RightMouseDown)
-        .on("mousedown", mouseDown(d));
+        
 
 document.oncontextmenu=RightMouseDown;
 
@@ -229,6 +228,13 @@ document.onmousedown = mouseDown;
         transitioning = false;
       });
     }
+    
+      function mouseDown(d) {
+    if (window.event.which===3) {//righClick
+        console.log(d.name);
+        transition(d.parent.parent);
+    }
+  }
  
     return g;
   }
@@ -257,14 +263,11 @@ document.onmousedown = mouseDown;
   }
   
   
-  function mouseDown(d) {
-    if (Event.which===3) {//righClick
-        console.log(d.name);
-    }
-  }
+
 
 
 function RightMouseDown() { return false; }
+  
   
 });
 </script>
