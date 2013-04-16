@@ -76,7 +76,8 @@ var treemap = d3.layout.treemap()
     .children(function(d, depth) { return depth ? null : d.children; })
     .sort(function(a, b) { return a.value - b.value; })
     .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
-    .round(false);
+    .round(false)
+    .value(function(d) { return d.size? d.size : 3000 ; });
  
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
