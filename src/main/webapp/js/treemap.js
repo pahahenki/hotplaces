@@ -25,6 +25,7 @@ var treemap = d3.layout.treemap()
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.bottom + margin.top)
+    .attr("onmouseout", "unHightLight(undefined);")
     .style("margin-left", -margin.left + "px")
     .style("margin.right", -margin.right + "px")
     .append("g")
@@ -91,10 +92,12 @@ d3.json("g5kMock.json", function(root) {
         .data(d.children)
         .enter().append("g")
         .classed("children", true)
+        .attr("name", function(d) { return d.depth ===3? d.parent.parent.name: (d.depth ===2? d.parent.name: (d.depth ===1? d.name: null)) })
+        .attr("id", function(d){return getId(d)})
         .on("click", function(d){d.children? transition(d): null})
         .on("contextmenu", function(d) {mouseDown(d);})
         .on("mouseout", function(d) {remove(); })
-        .on("mouseover", function(d) {console.log(d);contextualMenu(d);});
+        .on("mouseover", function(d) {contextualMenu(d); onhover(d, this);});
 
  
     g.append("rect")
