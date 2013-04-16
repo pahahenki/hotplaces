@@ -45,16 +45,15 @@ function getId(d){
             node=node.parent;
           }
           }
+          console.log(node.name +"." + name);
           return name= node.name +"." + name;
 
 }
  
 function onhover(d, div){
-			console.log(d);
 			var dcolor= d;
 							
 	        var currentId= getId(dcolor);
-	        //console.log(currentId);
 	        
 	        unHightLight(currentId);
 	        hightLight(currentId, div);
@@ -69,12 +68,10 @@ function onhover(d, div){
 	
 
 function unHightLight(currentId){
-			console.log(memEletSelect + currentId);
 	        if(memEletSelect != currentId && memEletSelect != undefined && currentId !="g5k."){
-
+		    
          	var oldElt = document.getElementById(memEletSelect);
-         	var listEltOut= document.getElementsByName(memEletSelect.split(".")[1]);
-         	console.log(listEltOut[0]);
+         	var listEltOut= document.getElementsByName(memEletSelect.split(".")[memEletSelect.split(".").length-1]);
           for( var i = 1; i < listEltOut[0].childNodes.length-1; i++){
           		
           		var color =hexToRgb(listEltOut[0].childNodes[i].style.fill);

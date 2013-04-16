@@ -94,8 +94,8 @@ d3.json("g5kMock.json", function(root) {
         .classed("children", true)
         .attr("name", function(d) { return d.depth ===3? d.parent.parent.name: (d.depth ===2? d.parent.name: (d.depth ===1? d.name: null)) })
         .attr("id", function(d){return getId(d)})
-        .on("click", function(d){d.children? transition(d): null})
-        .on("contextmenu", function(d) {mouseDown(d);})
+        .on("click", function(d){d.children? transition(d): null;  unHightLight(d)})
+        .on("contextmenu", function(d) {mouseDown(d); unHightLight(d)})
         .on("mouseout", function(d) {remove(); })
         .on("mouseover", function(d) {contextualMenu(d); onhover(d, this);});
 
