@@ -9,14 +9,28 @@ rect {
   stroke: #fff;
 }
 
+.bulle {
+    width: 90%;
+    height: 2em;
+    min-width: 100px;
+    padding-left: 1em;
+    padding-top: 1em;
+    position: relative;
+    z-index: 2;
+    border-color: black;
+    background-color: #EFEBA9;
+}
+
 
 </style>
 
 
 <p id="chart">
+<div class="bulle" id="bulle"></div>
 
 
 <script src="http://d3js.org/d3.v2.min.js?2.9.1"></script>
+<script src="./js/functionStyle.js"></script>
 <script>
 var margin = {top: 20, right: 0, bottom: 0, left: 0},
     width = 960,
@@ -92,7 +106,7 @@ d3.json("g5kMock.json", function(root) {
         c.y = d.y + c.y * d.dy;
         c.dx *= d.dx;
         c.dy *= d.dy;
-        c.parent = d;
+        c.parent = d
         layout(c);
       });
     }
@@ -107,10 +121,19 @@ d3.json("g5kMock.json", function(root) {
  
     var g = g1.selectAll("g")
         .data(d.children)
+<<<<<<< HEAD
         .enter().append("g")
         .classed("children", true)
         .on("click", function(d){d.children? transition(d): null;})
         .on("contextmenu", function(d) {mouseDown(d);});
+=======
+      .enter().append("g")
+              .classed("children", true)
+        .on("click", function(d){d.children? transition(d): null})
+        .on("contextmenu", function(d) {mouseDown(d);})
+              .on("mouseout", function(d) {remove(); })
+      .on("mouseover", function(d) {console.log(d);contextualMenu(d);});
+>>>>>>> fix #17
  
     g.append("rect")
         .attr("class", "parent")
@@ -172,6 +195,7 @@ d3.json("g5kMock.json", function(root) {
     if (window.event.which===3) {
         transition(d.parent.parent);
     }
+    
   }
  
     return g;

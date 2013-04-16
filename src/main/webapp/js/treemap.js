@@ -15,7 +15,7 @@ var treemap = d3.layout.treemap()
     
     
     //ajout une div a  body avec les style en question
-var undi
+
 
 var div = d3.select("body").append("div")
 	.attr("class", "treemap")
