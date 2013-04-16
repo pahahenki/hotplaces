@@ -121,19 +121,13 @@ d3.json("g5kMock.json", function(root) {
  
     var g = g1.selectAll("g")
         .data(d.children)
-<<<<<<< HEAD
-        .enter().append("g")
-        .classed("children", true)
-        .on("click", function(d){d.children? transition(d): null;})
-        .on("contextmenu", function(d) {mouseDown(d);});
-=======
       .enter().append("g")
               .classed("children", true)
         .on("click", function(d){d.children? transition(d): null})
         .on("contextmenu", function(d) {mouseDown(d);})
               .on("mouseout", function(d) {remove(); })
       .on("mouseover", function(d) {console.log(d);contextualMenu(d);});
->>>>>>> fix #17
+
  
     g.append("rect")
         .attr("class", "parent")
