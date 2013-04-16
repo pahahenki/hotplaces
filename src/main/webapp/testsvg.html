@@ -107,28 +107,26 @@ d3.json("g5kMock.json", function(root) {
  
     var g = g1.selectAll("g")
         .data(d.children)
-      .enter().append("g")
-              .classed("children", true)
-        .on("click", function(d){d.children? transition(d): null})
+        .enter().append("g")
+        .classed("children", true)
+        .on("click", function(d){d.children? transition(d): null;})
         .on("contextmenu", function(d) {mouseDown(d);});
- 
-
-        
-
-
-
-
-    g.selectAll(".child")
-        .data(function(d) { return d.children || [d]; })
-      .enter().append("rect")
-        .attr("class", "child")
-        .call(rect);
  
     g.append("rect")
         .attr("class", "parent")
         .call(rect)
       .append("title")
         .text(function(d) { return d.name; });
+
+    g.selectAll(".child")
+        .data(function(d) { return d.children || [d]; })
+        .enter().append("rect")
+        .attr("class", "child")
+        .call(rect)
+        
+;
+ 
+
  
     g.append("text")
         .attr("dy", ".75em")
