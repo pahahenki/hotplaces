@@ -50,18 +50,15 @@ function getId(d){
 }
  
 function onhover(d, div){
-			
-			var dcolor= d.depth===3? 
-							d.parent.parent:
-							(d.depth===2? 
-									d.parent :
-									(d.depth ===1? 
-										d: 
-										null)
-							);
+			console.log(d);
+			var dcolor= d;
+							
 	        var currentId= getId(dcolor);
+	        //console.log(currentId);
+	        
 	        unHightLight(currentId);
 	        hightLight(currentId, div);
+	        
 	        
           
           
@@ -72,20 +69,21 @@ function onhover(d, div){
 	
 
 function unHightLight(currentId){
-			
+			console.log(memEletSelect + currentId);
 	        if(memEletSelect != currentId && memEletSelect != undefined && currentId !="g5k."){
 
          	var oldElt = document.getElementById(memEletSelect);
          	var listEltOut= document.getElementsByName(memEletSelect.split(".")[1]);
-          
-          for( var i = 0; i < listEltOut.length; i++){
-          		var color =listEltOut[i].style.backgroundColor.slice(4,17).split(", ");
-
+         	console.log(listEltOut[0]);
+          for( var i = 1; i < listEltOut[0].childNodes.length-1; i++){
           		
-          		var r =  parseInt(color[0])+50;
-          		var g = parseInt(color[1])+50;
-          		var b = parseInt(color[2])+50;
-	          listEltOut[i].style.backgroundColor= "rgb("+r+","+g+","+b+")";
+          		var color =hexToRgb(listEltOut[0].childNodes[i].style.fill);
+          		
+          		
+          		color.r +=  50;
+          		color.g += 50;
+          		color.b += 50;
+	          listEltOut[0].childNodes[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
           }
 
           oldElt.style.border="";
@@ -101,37 +99,38 @@ function hightLight(name, div){
           
          if(memEletSelect != name && memEletSelect != undefined && name !="g5k."){
           
-          for( var i = 0; i < listEltIn.length; i++){
-          		var color =listEltIn[i].style.backgroundColor.slice(4,17).split(", ");
+          for( var i = 1; i < listEltIn[0].childNodes.length-1; i++){
           		
-          		var r =  parseInt(color[0])-50;
-          		var g = parseInt(color[1])-50;
-          		var b = parseInt(color[2])-50;
-	          listEltIn[i].style.backgroundColor= "rgb("+r+","+g+","+b+")";
+          		var color =hexToRgb(listEltIn[0].childNodes[i].style.fill);
+          		
+          		
+          		color.r -=  50;
+          		color.g -= 50;
+          		color.b -= 50;
+	          listEltIn[0].childNodes[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
           }
 
-         currentElt.style.border=" solid 1px rgb(230,230,230)";
-          currentElt.style.backgroundColor="rgb(230,230,230)";
+         currentElt.childNodes[i].style.border=" solid 1px rgb(230,230,230)";
+         currentElt.childNodes[i].style.backgroundColor="rgb(230,230,230)";
 
           
         }
         if(memEletSelect === undefined&& name !="g5k."){
           
-          for( var i = 0; i < listEltIn.length; i++){
-          		var color =listEltIn[i].style.backgroundColor.slice(4,17).split(", ");
+         for( var i = 1; i < listEltIn[0].childNodes.length-1; i++){
           		
-          		var r =  parseInt(color[0])-50;
-          		var g = parseInt(color[1])-50;
-          		var b = parseInt(color[2])-50;
-	          listEltIn[i].style.backgroundColor= "rgb("+r+","+g+","+b+")";
+          		var color =hexToRgb(listEltIn[0].childNodes[i].style.fill);
+          		
+          		color.r -=  50;
+          		color.g -= 50;
+          		color.b -= 50;
+	          listEltIn[0].childNodes[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
           }
           
-         currentElt.style.border=" solid 1px rgb(230,230,230)";
+          currentElt.style.border=" solid 1px rgb(230,230,230)";
           currentElt.style.backgroundColor="rgb(230,230,230)";
           memEletSelect = name;
         }
-
-	
 }
 
 
@@ -158,4 +157,12 @@ function follow_mouse(e) {
 }
 function remove() {
     document.getElementById("bulle").innerHTML = '';
+}
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
 }
