@@ -4,49 +4,11 @@
 <title>Zoomable Treemaps</title>
 <style>
 
-@import url(../style.css?20120608);
-
-#chart {
-  width: 960px;
-  height: 500px;
-  
-}
-
-text {
-  pointer-events: none;
-}
-
-.grandparent text {
-  font-weight: bold;
-}
-
 rect {
   fill: none;
   stroke: #fff;
 }
 
-rect.parent,
-.grandparent rect {
-  stroke-width: 2px;
-}
-
-.grandparent rect {
-  
-}
-
-.children rect.parent,
-.grandparent rect {
-  cursor: pointer;
-}
-
-rect.parent {
-  pointer-events: all;
-}
-
-.children:hover rect.child,
-.grandparent:hover rect {
-  fill: #aaa;
-}
 
 </style>
 
@@ -56,7 +18,6 @@ rect.parent {
 
 <script src="http://d3js.org/d3.v2.min.js?2.9.1"></script>
 <script>
-
 var margin = {top: 20, right: 0, bottom: 0, left: 0},
     width = 960,
     height = 500 - margin.top - margin.bottom,
@@ -91,18 +52,7 @@ var svg = d3.select("#chart").append("svg")
 var grandparent = svg.append("g")
     .attr("class", "grandparent");
  
-/* Dezoom area **/
-/*
-grandparent.append("rect")
-    .attr("y", -margin.top)
-    .attr("width", width)
-    .attr("height", margin.top);
- 
-grandparent.append("text")
-    .attr("x", 6)
-    .attr("y", 6 - margin.top)
-    .attr("dy", ".75em");
- */
+
 d3.json("g5kMock.json", function(root) {
   var nodes = [];
  
@@ -149,13 +99,7 @@ d3.json("g5kMock.json", function(root) {
   }
  
   function display(d) {
-   /*
-    grandparent
-        .datum(d.parent)
-        .on("click", transition)
-      .select("text")
-        .text(name(d));
-        */
+
  
     var g1 = svg.insert("g", ".grandparent")
         .datum(d)
@@ -163,20 +107,17 @@ d3.json("g5kMock.json", function(root) {
  
     var g = g1.selectAll("g")
         .data(d.children)
-      .enter().append("g");
+      .enter().append("g")
+              .classed("children", true)
+        .on("click", function(d){d.children? transition(d): null})
+        .on("contextmenu", function(d) {mouseDown(d);});
  
-    g.filter(function(d) { return d.children; })
-        .classed("children", true)
-        .on("click", transition)
-        .on("contextmenu", function(d) {mouseDown(d);})
-;
+
         
 
-document.oncontextmenu=RightMouseDown;
 
-/*
-document.onmousedown = mouseDown; 
- */
+
+
     g.selectAll(".child")
         .data(function(d) { return d.children || [d]; })
       .enter().append("rect")
@@ -230,8 +171,7 @@ document.onmousedown = mouseDown;
     }
     
       function mouseDown(d) {
-    if (window.event.which===3) {//righClick
-        console.log(d.name);
+    if (window.event.which===3) {
         transition(d.parent.parent);
     }
   }
@@ -249,11 +189,7 @@ document.onmousedown = mouseDown;
         .attr("y", function(d) { return y(d.y); })
         .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
         .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-        .style("fill", function(d) { return color(d.name); })
-        //.on("contextmenu", console.log("clic droit!"))
-        //.on("mouseover", function(d) { d.depth !== 1 ? rect.style("fill", "black") : null ;} )
-        //.on("mouseout", function(d) { rect.style("fill", function(d) { return color(d.name) + 20; } ) ;} )
-;
+        .style("fill", function(d) { return color(d.name); });
   }
  
   function name(d) {
@@ -263,11 +199,12 @@ document.onmousedown = mouseDown;
   }
   
   
+document.oncontextmenu=RightMouseDown;
 
 
 
-function RightMouseDown() { return false; }
-  
+function RightMouseDown() { return false; } 
   
 });
+
 </script>
