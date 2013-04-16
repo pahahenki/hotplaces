@@ -1,7 +1,7 @@
 
 
-var margin = {top: 20, right: 0, bottom: 0, left: 0},
-    width = 960,
+var margin = {top: 50, right: 10, bottom: 10, left: 10},
+    width = 1000 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     formatNumber = d3.format(",d"),
     color = d3.scale.category20c(),
@@ -27,7 +27,7 @@ var svg = d3.select("#chart").append("svg")
     .attr("height", height + margin.bottom + margin.top)
     .style("margin-left", -margin.left + "px")
     .style("margin.right", -margin.right + "px")
-  .append("g")
+    .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .style("shape-rendering", "crispEdges");
  
@@ -89,27 +89,25 @@ d3.json("g5kMock.json", function(root) {
  
     var g = g1.selectAll("g")
         .data(d.children)
-      .enter().append("g")
-              .classed("children", true)
+        .enter().append("g")
+        .classed("children", true)
         .on("click", function(d){d.children? transition(d): null})
         .on("contextmenu", function(d) {mouseDown(d);})
-              .on("mouseout", function(d) {remove(); })
-      .on("mouseover", function(d) {console.log(d);contextualMenu(d);});
+        .on("mouseout", function(d) {remove(); })
+        .on("mouseover", function(d) {console.log(d);contextualMenu(d);});
 
  
     g.append("rect")
         .attr("class", "parent")
         .call(rect)
-      .append("title")
+        .append("title")
         .text(function(d) { return d.name; });
 
     g.selectAll(".child")
         .data(function(d) { return d.children || [d]; })
         .enter().append("rect")
         .attr("class", "child")
-        .call(rect)
-        
-;
+        .call(rect);
  
 
  
@@ -118,47 +116,50 @@ d3.json("g5kMock.json", function(root) {
         .text(function(d) { return d.name; })
         .call(text);
  
-    function transition(d) {
-      if (transitioning || !d) return;
-      transitioning = true;
- 
-      var g2 = display(d),
-          t1 = g1.transition().duration(300),
-          t2 = g2.transition().duration(300);
- 
-      // Update the domain only after entering new elements.
-      x.domain([d.x, d.x + d.dx]);
-      y.domain([d.y, d.y + d.dy]);
- 
-      // Enable anti-aliasing during the transition.
-      // Desabled for  more fluent transitions
-      //svg.style("shape-rendering", null);
- 
-      // Draw child nodes on top of parent nodes.
-      svg.selectAll(".depth").sort(function(a, b) { return a.depth - b.depth; });
- 
-      // Fade-in entering text.
-      g2.selectAll("text").style("fill-opacity", 0);
- 
-      // Transition to the new view.
-      t1.selectAll("text").call(text).style("fill-opacity", 0);
-      t2.selectAll("text").call(text).style("fill-opacity", 1);
-      t1.selectAll("rect").call(rect);
-      t2.selectAll("rect").call(rect);
- 
-      // Remove the old node when the transition is finished.
-      t1.remove().each("end", function() {
-        svg.style("shape-rendering", "crispEdges");
-        transitioning = false;
-      });
-    }
+        function transition(d) {
+            if (transitioning || !d)
+                return;
+            transitioning = true;
+
+            var g2 = display(d),
+                    t1 = g1.transition().duration(300),
+                    t2 = g2.transition().duration(300);
+
+            // Update the domain only after entering new elements.
+            x.domain([d.x, d.x + d.dx]);
+            y.domain([d.y, d.y + d.dy]);
+
+            // Enable anti-aliasing during the transition.
+            // Desabled for  more fluent transitions
+            //svg.style("shape-rendering", null);
+
+            // Draw child nodes on top of parent nodes.
+            svg.selectAll(".depth").sort(function(a, b) {
+                return a.depth - b.depth;
+            });
+
+            // Fade-in entering text.
+            g2.selectAll("text").style("fill-opacity", 0);
+
+            // Transition to the new view.
+            t1.selectAll("text").call(text).style("fill-opacity", 0);
+            t2.selectAll("text").call(text).style("fill-opacity", 1);
+            t1.selectAll("rect").call(rect);
+            t2.selectAll("rect").call(rect);
+
+            // Remove the old node when the transition is finished.
+            t1.remove().each("end", function() {
+                svg.style("shape-rendering", "crispEdges");
+                transitioning = false;
+            });
+        }
     
-      function mouseDown(d) {
-    if (window.event.which===3) {
-        transition(d.parent.parent);
-    }
-    
-  }
+        function mouseDown(d) {
+            if (window.event.which === 3) {
+                transition(d.parent.parent);
+            }
+
+        }
  
     return g;
   }
