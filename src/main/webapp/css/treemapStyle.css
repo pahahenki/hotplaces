@@ -3,14 +3,17 @@ rect {
   stroke: #fff;
 }
 
+#chart {
+  margin: auto;
+  position: relative;
+  width: 960px;
+}
+
 .bulle {
-    width: 90%;
-    height: 2em;
-    min-width: 100px;
-    padding-left: 1em;
-    padding-top: 1em;
+    margin: auto;
     position: relative;
-    z-index: 2;
-    border-color: black;
+    width: 960px;
+    height: 2em;
+    padding-top: 1em;
     background-color: #EFEBA9;
 }
