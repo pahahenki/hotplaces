@@ -4,7 +4,7 @@ var margin = {top: 50, right: 10, bottom: 10, left: 10},
     width = 1000 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom,
     formatNumber = d3.format(",d"),
-    color = d3.scale.category20c(),
+    color = d3.scale.category20(),
     transitioning;
  
 var x = d3.scale.linear()
@@ -107,7 +107,6 @@ d3.json("g5kMock.json", function(root) {
         .attr("id", function(d){return getId(d)})
         .on("click", function(d){d.children? transition(d): null})
         .on("contextmenu", function(d) {d.parent.parent? mouseDown(d) : null; })
-        
         .on("mouseover", function(d) { onhover(d, this);});
 
  
@@ -118,20 +117,31 @@ d3.json("g5kMock.json", function(root) {
         
         .append("title")
         .text(function(d) { return d.name; });
+        
+
 
     g.selectAll(".child")
         .data(function(d) { return d.children || [d]; })
         .enter().append("rect")
         .attr("class", "child")
-        
         .call(rect)
         .on("mouseout", function(d) {remove();})
         .on("mouseover", function(d) {contextualMenu(d);});
  
 
+    g.selectAll(".textChild")
+        .data(function(d) { return d.children || [d]; })
+        .enter().append("text")
+        .attr("class", "textChild")
+        .text(function(d) { return x(d.dx)>30? d.name: null; })
+        .attr("dy", ".75em")
+        .call(textChild);
+
+ 
  
     g.append("text")
-        .attr("dy", ".75em")
+        .attr("dy", "1.75em")
+        .attr("class", "textChildren")
         .text(function(d) { return d.name; })
         .call(text);
  
@@ -165,7 +175,8 @@ d3.json("g5kMock.json", function(root) {
 
             // Transition to the new view.
             t1.selectAll("text").call(text).style("fill-opacity", 0);
-            t2.selectAll("text").call(text).style("fill-opacity", 1);
+            t2.selectAll(".textChildren").call(text).style("fill-opacity", 1);
+            t2.selectAll(".textChild").call(textChild).style("fill-opacity", 1);
             t1.selectAll("rect").call(rect);
             t2.selectAll("rect").call(rect);
 
@@ -188,8 +199,18 @@ d3.json("g5kMock.json", function(root) {
   }
  
   function text(text) {
-    text.attr("x", function(d) { return x(d.x) + 6; })
-        .attr("y", function(d) { return y(d.y) + 6; });
+    text.attr("x", function(d) { return x(d.x+d.dx/2) ; })
+        .attr("y", function(d) { return y(d.y) + 6; })
+        .style("font-size",function(d) { return d.parent.children.length<20? "x-large": "medium"}  );
+  }
+  
+    function textChild(text) {
+    console.log(text);
+    text.attr("x", function(d) { return x(d.x) +6  })
+        .attr("y", function(d) { return y(d.y) + 6; })
+        
+
+        ;
   }
  
   function rect(rect) {
@@ -200,11 +221,7 @@ d3.json("g5kMock.json", function(root) {
         .style("fill", function(d) { return color(d.name); });
   }
  
-  function name(d) {
-    return d.parent
-        ? name(d.parent) + "." + d.name
-        : d.name;
-  }
+
   
   
 document.oncontextmenu=RightMouseDown;
