@@ -21,3 +21,13 @@ text {
     padding-top: 1em;
     background-color: #EFEBA9;
 }
+
+.textChildren{
+	font-size: x-large;
+	text-anchor: middle;
+}
+
+.textChild{
+	font-style: italic;
+	font-size: smaller
+}

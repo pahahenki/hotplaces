@@ -73,7 +73,7 @@ function unHightLight(currentId){
          	var listEltOut= document.getElementsByName(memEletSelect.split(".")[memEletSelect.split(".").length-1]);
          	var listChildNode = listEltOut[0]? listEltOut[0].childNodes : null;
          	if(listChildNode != null){
-          for( var i = 1; i < listChildNode.length-1; i++){
+          for( var i = 1; i < (listChildNode.length-1)/2; i++){
           		
           		var color =hexToRgb(listChildNode[i].style.fill);
           		
@@ -119,7 +119,7 @@ function hightLight(name, div){
         }
         if(memEletSelect === undefined&& name !="g5k."){
           
-         for( var i = 1; i < listEltIn[0].childNodes.length-1; i++){
+         for( var i = 1; i < (listEltIn[0].childNodes.length-1)/2; i++){
           		
           		var color =hexToRgb(listEltIn[0].childNodes[i].style.fill);
           		
