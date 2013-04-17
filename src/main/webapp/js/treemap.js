@@ -76,6 +76,7 @@ d3.json("g5kMock.json", function(root) {
         c.dx *= d.dx;
         c.dy *= d.dy;
         c.parent = d
+        
         layout(c);
       });
     }
@@ -94,15 +95,16 @@ d3.json("g5kMock.json", function(root) {
         .classed("children", true)
         .attr("name", function(d) { return d.depth ===3? d.parent.parent.name: (d.depth ===2? d.parent.name: (d.depth ===1? d.name: null)) })
         .attr("id", function(d){return getId(d)})
-        .on("click", function(d){d.children? transition(d): null;  unHightLight(d)})
-        .on("contextmenu", function(d) {mouseDown(d); unHightLight(d)})
-        .on("mouseout", function(d) {remove(); })
-        .on("mouseover", function(d) {contextualMenu(d); onhover(d, this);});
+        .on("click", function(d){d.children? transition(d): null})
+        .on("contextmenu", function(d) {d.parent.parent? mouseDown(d) : null; })
+        
+        .on("mouseover", function(d) { onhover(d, this);});
 
  
     g.append("rect")
         .attr("class", "parent")
         .call(rect)
+        
         .append("title")
         .text(function(d) { return d.name; });
 
@@ -110,7 +112,10 @@ d3.json("g5kMock.json", function(root) {
         .data(function(d) { return d.children || [d]; })
         .enter().append("rect")
         .attr("class", "child")
-        .call(rect);
+        
+        .call(rect)
+        .on("mouseout", function(d) {remove();})
+        .on("mouseover", function(d) {contextualMenu(d);});
  
 
  
@@ -120,6 +125,8 @@ d3.json("g5kMock.json", function(root) {
         .call(text);
  
         function transition(d) {
+        remove();
+        	unHightLight(undefined)
             if (transitioning || !d)
                 return;
             transitioning = true;
@@ -158,6 +165,8 @@ d3.json("g5kMock.json", function(root) {
         }
     
         function mouseDown(d) {
+        	remove();
+        	unHightLight(undefined);
             if (window.event.which === 3) {
                 transition(d.parent.parent);
             }
