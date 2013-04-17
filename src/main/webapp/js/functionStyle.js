@@ -45,7 +45,6 @@ function getId(d){
             node=node.parent;
           }
           }
-          console.log(node.name +"." + name);
           return name= node.name +"." + name;
 
 }
