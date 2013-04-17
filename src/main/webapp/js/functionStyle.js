@@ -71,20 +71,26 @@ function unHightLight(currentId){
 		    
          	var oldElt = document.getElementById(memEletSelect);
          	var listEltOut= document.getElementsByName(memEletSelect.split(".")[memEletSelect.split(".").length-1]);
-          for( var i = 1; i < listEltOut[0].childNodes.length-1; i++){
+         	var listChildNode = listEltOut[0]? listEltOut[0].childNodes : null;
+         	if(listChildNode != null){
+          for( var i = 1; i < listChildNode.length-1; i++){
           		
-          		var color =hexToRgb(listEltOut[0].childNodes[i].style.fill);
+          		var color =hexToRgb(listChildNode[i].style.fill);
           		
           		
           		color.r +=  50;
           		color.g += 50;
           		color.b += 50;
-	          listEltOut[0].childNodes[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
+	          listChildNode[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
+          }
+           oldElt.style.border="";
+          oldElt.style.backgroundColor="";
           }
 
-          oldElt.style.border="";
-          oldElt.style.backgroundColor="";
+         
           memEletSelect = undefined;
+          
+
           
         }
 }

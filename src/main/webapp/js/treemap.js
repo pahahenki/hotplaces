@@ -126,11 +126,12 @@ d3.json("g5kMock.json", function(root) {
  
         function transition(d) {
         remove();
-        	unHightLight(undefined)
+        unHightLight(undefined);
             if (transitioning || !d)
                 return;
             transitioning = true;
-
+           
+            
             var g2 = display(d),
                     t1 = g1.transition().duration(300),
                     t2 = g2.transition().duration(300);
@@ -165,8 +166,7 @@ d3.json("g5kMock.json", function(root) {
         }
     
         function mouseDown(d) {
-        	remove();
-        	unHightLight(undefined);
+
             if (window.event.which === 3) {
                 transition(d.parent.parent);
             }
