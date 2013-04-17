@@ -30,7 +30,7 @@ var svg = d3.select("#chart").append("svg")
     .style("margin.right", -margin.right + "px")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-    .style("shape-rendering", "crispEdges");
+    .style("shape-rendering", null);
  
 var grandparent = svg.append("g")
     .attr("class", "grandparent");
@@ -75,11 +75,21 @@ d3.json("g5kMock.json", function(root) {
         c.y = d.y + c.y * d.dy;
         c.dx *= d.dx;
         c.dy *= d.dy;
-        c.parent = d
+        c.parent = d;
         
         layout(c);
       });
     }
+  }
+ 
+ function treeDepth(d) {
+    var cpt=0;
+    var tmp=d;
+    while(tmp.parent) {
+        cpt++;
+        tmp = tmp.parent;
+    }
+    return cpt;
   }
  
   function display(d) {
@@ -103,6 +113,7 @@ d3.json("g5kMock.json", function(root) {
  
     g.append("rect")
         .attr("class", "parent")
+        .attr("stroke-width", "10")
         .call(rect)
         
         .append("title")
@@ -142,7 +153,7 @@ d3.json("g5kMock.json", function(root) {
 
             // Enable anti-aliasing during the transition.
             // Desabled for  more fluent transitions
-            //svg.style("shape-rendering", null);
+            svg.style("shape-rendering", null);
 
             // Draw child nodes on top of parent nodes.
             svg.selectAll(".depth").sort(function(a, b) {
@@ -160,7 +171,7 @@ d3.json("g5kMock.json", function(root) {
 
             // Remove the old node when the transition is finished.
             t1.remove().each("end", function() {
-                svg.style("shape-rendering", "crispEdges");
+                svg.style("shape-rendering", null);
                 transitioning = false;
             });
         }
