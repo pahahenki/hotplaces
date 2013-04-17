@@ -3,6 +3,10 @@ rect {
   stroke: #fff;
 }
 
+text {
+    pointer-events: none;
+}
+
 #chart {
   margin: auto;
   position: relative;
