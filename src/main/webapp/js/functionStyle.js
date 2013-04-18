@@ -201,3 +201,28 @@ function hexToRgb(hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
+
+function textResize(elt, d) {
+            
+            var textWidth = elt.getComputedTextLength();
+            var arrayBro = elt.parentNode.childNodes;
+            var len = arrayBro.length;
+            var i = len / 2;
+
+            if (arrayBro[i].firstChild===null || elt.firstChild === null)
+                return null;
+
+            while (arrayBro[i].firstChild.nodeValue !== elt.firstChild.nodeValue) {
+                i++;
+            }
+
+
+            var irect = i - len / 2;
+            var rectWidth = parseInt(elt.parentNode.childNodes[irect].getAttribute('width'));
+            
+            console.log(d.name);
+            console.log(textWidth);
+            console.log(rectWidth);
+          
+    return textWidth < rectWidth ? null : rectWidth *2;
+        }

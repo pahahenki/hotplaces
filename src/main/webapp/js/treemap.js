@@ -128,6 +128,11 @@ d3.json("g5kMock.json", function(root) {
         .on("mouseout", function(d) {remove();})
         .on("mouseover", function(d) {contextualMenu(d);});
  
+    g.append("text")
+        .attr("dy", "1.75em")
+        .attr("class", "textChildren")
+        .text(function(d) { return d.name; })
+        .call(text);
 
     g.selectAll(".textChild")
         .data(function(d) { return d.children || [d]; })
@@ -135,15 +140,13 @@ d3.json("g5kMock.json", function(root) {
         .attr("class", "textChild")
         .text(function(d) { return x(d.dx)>30? d.name: null; })
         .attr("dy", ".75em")
+        .attr("lengthAdjust", "spacingAndGlyphs")
+        //.attr("textLength", function(d) { return textResize(this, d);})
         .call(textChild);
 
  
  
-    g.append("text")
-        .attr("dy", "1.75em")
-        .attr("class", "textChildren")
-        .text(function(d) { return d.name; })
-        .call(text);
+    
  
         function transition(d) {
         remove();
