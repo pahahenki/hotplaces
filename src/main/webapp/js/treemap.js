@@ -188,8 +188,8 @@ d3.json("g5kMock.json", function(root) {
         }
     
         function mouseDown(d) {
-
-            if (window.event.which === 3) {
+	        console.log(Event.button);
+            if (window.event.which===3 ) {
                 transition(d.parent.parent);
             }
 
@@ -205,7 +205,6 @@ d3.json("g5kMock.json", function(root) {
   }
   
     function textChild(text) {
-    console.log(text);
     text.attr("x", function(d) { return x(d.x) +6  })
         .attr("y", function(d) { return y(d.y) + 6; })
         

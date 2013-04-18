@@ -54,8 +54,8 @@ function onhover(d, div){
 							
 	        var currentId= getId(dcolor);
 	        
-	        unHightLight(currentId);
-	        hightLight(currentId, div);
+	        unHightLight(div);
+	        hightLight(div);
 	        
 	        
           
@@ -66,25 +66,35 @@ function onhover(d, div){
       }
 	
 
-function unHightLight(currentId){
-	        if(memEletSelect != currentId && memEletSelect != undefined && currentId !="g5k."){
+function unHightLight(div){
+	        if(memEletSelect != div && memEletSelect != undefined){
 		    
-         	var oldElt = document.getElementById(memEletSelect);
-         	var listEltOut= document.getElementsByName(memEletSelect.split(".")[memEletSelect.split(".").length-1]);
-         	var listChildNode = listEltOut[0]? listEltOut[0].childNodes : null;
+         	var listChildNode = memEletSelect? memEletSelect.childNodes : null;
          	if(listChildNode != null){
           for( var i = 1; i < (listChildNode.length-1)/2; i++){
           		
-          		var color =hexToRgb(listChildNode[i].style.fill);
-          		
-          		
-          		color.r +=  50;
-          		color.g += 50;
-          		color.b += 50;
-	          listChildNode[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
+          	//in safari and chrome
+	          var color =listChildNode[i].style.fill;
+          		if(color[0] === "#"){
+          			color = hexToRgb(color);
+          			color.r +=  50;
+          			color.g += 50;
+          			color.b += 50;
+          			listChildNode[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
+	          }
+	          //in opera and firefox
+	          	if(color[0]==="r"){
+		          	color=color.split(",");
+		          	var r = parseInt(color[0].slice(4))+50;
+		          	var g= parseInt(color[1]) +50;
+		          	var b = parseInt(color[2].slice(0,color[2].length-1)) +50;
+		          	listChildNode[i].style.fill= "rgb("+r+","+g+","+b+")";
+
+		          	
+	          	}
           }
-           oldElt.style.border="";
-          oldElt.style.backgroundColor="";
+          memEletSelect.style.border="";
+          memEletSelect.style.backgroundColor="";
           }
 
          
@@ -95,43 +105,66 @@ function unHightLight(currentId){
         }
 }
 
-function hightLight(name, div){
-		var currentElt = document.getElementById(name);
-        var listEltIn= document.getElementsByName(div.getAttribute("name")); 
+function hightLight( div){
+              
+         if(memEletSelect != div && memEletSelect != undefined && div.getAttribute("id") !="g5k."){
           
-         if(memEletSelect != name && memEletSelect != undefined && name !="g5k."){
-          
-          for( var i = 1; i < listEltIn[0].childNodes.length-1; i++){
+          for( var i = 1; i < div.childNodes.length-1; i++){
           		
-          		var color =hexToRgb(listEltIn[0].childNodes[i].style.fill);
-          		
-          		
-          		color.r -=  50;
-          		color.g -= 50;
-          		color.b -= 50;
-	          listEltIn[0].childNodes[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
+	          //in safari and chrome
+	          var color =div.childNodes[i].style.fill;
+          		if(color[0] === "#"){
+          			color = hexToRgb(color);
+          			color.r -=  50;
+          			color.g -= 50;
+          			color.b -= 50;
+          			div.childNodes[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
+	          }
+	          //in opera and firefox
+	          	if(color[0]==="r"){
+		          	color=color.split(",");
+		          	var r = parseInt(color[0].slice(4))-50;
+		          	var g= parseInt(color[1]) -50;
+		          	var b = parseInt(color[2].slice(0,color[2].length-1)) -50;
+		          	div.childNodes[i].style.fill= "rgb("+r+","+g+","+b+")";
+
+		          	
+	          	}
           }
 
-         currentElt.childNodes[i].style.border=" solid 1px rgb(230,230,230)";
-         currentElt.childNodes[i].style.backgroundColor="rgb(230,230,230)";
+         div.childNodes[i].style.border=" solid 1px rgb(230,230,230)";
+         div.childNodes[i].style.backgroundColor="rgb(230,230,230)";
 
           
         }
-        if(memEletSelect === undefined&& name !="g5k."){
+        
+        if(memEletSelect === undefined&& div.getAttribute("id") !="g5k."){
           
-         for( var i = 1; i < (listEltIn[0].childNodes.length-1)/2; i++){
-          		
-          		var color =hexToRgb(listEltIn[0].childNodes[i].style.fill);
-          		
+         for( var i = 1; i < (div.childNodes.length-1)/2; i++){
+          		//in safari and chrome
+          	var color =div.childNodes[i].style.fill;
+          		if(color[0] === "#"){
+          		color = hexToRgb(color);
           		color.r -=  50;
           		color.g -= 50;
           		color.b -= 50;
-	          listEltIn[0].childNodes[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
+	          div.childNodes[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
+	          }
+	          //in opera and firefox
+	          	if(color[0]==="r"){
+		          	color=color.split(",");
+		          	var r = parseInt(color[0].slice(4))-50;
+		          	var g= parseInt(color[1]) -50;
+		          	var b = parseInt(color[2].slice(0,color[2].length-1)) -50;
+		          	div.childNodes[i].style.fill= "rgb("+r+","+g+","+b+")";
+
+		          	
+	          	}
           }
           
-          currentElt.style.border=" solid 1px rgb(230,230,230)";
-          currentElt.style.backgroundColor="rgb(230,230,230)";
-          memEletSelect = name;
+          div.style.border=" solid 1px rgb(230,230,230)";
+          div.style.backgroundColor="rgb(230,230,230)";
+          memEletSelect = div;
         }
 }
 
