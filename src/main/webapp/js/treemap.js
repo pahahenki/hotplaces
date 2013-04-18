@@ -186,29 +186,6 @@ d3.json("g5kMock.json", function(root) {
                 transitioning = false;
             });
         }
-    /*
-        var sTestEventType='mousedown';
-
-        function handleMouseEvent(d) {
-            var evt = (d==null ? event:d);
-            var clickType = 'LEFT';
-            if (evt.type!=sTestEventType) return true;
-            if (evt.which) { 
-                if (evt.which==3) clickType='RIGHT';
-
-                if (evt.which==2) clickType='MIDDLE';
-            }
-            else if (evt.button) {
-                if (evt.button==2) clickType='RIGHT';
-                    return g;
-                if (evt.button==4) clickType='MIDDLE';
-            }
-            //alert(evt.type+': '+clickType+' button!');
-            transition(d.parent.parent);
-
-            return true;
-        }
-        document.onmousedown = handleMouseEvent;*/
 
         function mouseDown(d) {
 	        console.log(Event.button);
