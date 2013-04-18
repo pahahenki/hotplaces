@@ -187,25 +187,27 @@ d3.json("g5kMock.json", function(root) {
             });
         }
 
-        function mouseDown(d) {
-	        console.log(Event.button);
-            console.log(navigator.appName);
 
-            if (window.event.which===3 ) {
+        function mouseDown(e) {
+            if (navigator.appName =='Opera' && window.event.which===3) {
                 transition(d.parent.parent);
             }
-            if (navigator.appName == 'Microsoft Internet Explorer'
+            else if (navigator.appName == 'Microsoft Internet Explorer'
           && event.button==2){
-                transition(d.parent.parent);
+                transition(d.parent);
 
             }
             else if (navigator.appName == 'Netscape'
-          && event.button==2){
-                transition(d.parent.parent);
-            }
+             && e.which == 3) {
+                 //alert("no right click please")
+                transition(d.parent);
 
+             return false;
+            }
         }
- 
+        document.onmousedown=mouseDown
+
+
     return g;
   }
  
