@@ -36,7 +36,7 @@ var grandparent = svg.append("g")
     .attr("class", "grandparent");
  
 
-d3.json("g5kMock.json", function(root) {
+d3.json("http://localhost:8080/webapp/coucou", function(root) {
   var nodes = [];
  
   initialize(root);
