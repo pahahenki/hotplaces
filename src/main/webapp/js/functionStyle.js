@@ -1,26 +1,18 @@
   var memEletSelect ;
 function contextualMenu(d){
-	var type = "";
-        switch(d.depth) {
-            case 0: 
-                type = "Root : ";
-                break;
-            case 1 :
-                type = "Site : ";
-                break;
-            case 2 :
-                type = "Cluster : ";
-                break;
-            case 3 :
-                type = "Node : ";
-                break;
-            case 4 :
-                type = "VM : ";
-                break;
-        }
-        if(d.depth > 0)
-            pop('<span class="nodeType">' + type + '</span><span class="nodeParent">' + d.parent.name + '.</span><span class="nodeName">' + d.name + "</span>");
+    var tmp = d;
+    var str = "";
+    var names = Array();
+    var depth = 0;
 
+    while(tmp.parent != null) {
+        names.push('<span class="nodeLvl' + depth + '">' + tmp.name + '</span>');
+        tmp = tmp.parent;
+        depth++;
+    }
+    names.reverse();
+    str = names.join(".");
+    pop(str);
 }
 
 function position() {
@@ -57,11 +49,6 @@ function onhover(d, div){
 	        unHightLight(div);
 	        hightLight(div);
 	        
-	        
-          
-          
-          
-
 
       }
 	

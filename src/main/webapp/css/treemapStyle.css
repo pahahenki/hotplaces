@@ -31,3 +31,20 @@ text {
 	font-style: italic;
 	font-size: smaller
 }
+
+.nodeLvl0 {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.nodeLvl1 {
+    font-size: large;
+}
+
+.nodeLvl2 {
+    font-size: medium;
+}
+
+.nodeLvl3 {
+    font-size: medium;
+}
