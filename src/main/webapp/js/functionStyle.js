@@ -7,7 +7,7 @@ function contextualMenu(d) {
     var names = Array();
     var depth = 0;
 
-    while (tmp.parent !== null) {
+    while (tmp.parent != null) {
         names.push('<span class="nodeLvl' + depth + '">' + tmp.name + '</span>');
         tmp = tmp.parent;
         depth++;
@@ -41,7 +41,7 @@ function getId(d) {
     var name = "";
     var node = d;
     while (node.parent) {
-        if (name === "") {
+        if (name == "") {
             name = node.name;
             node = node.parent;
 
@@ -75,9 +75,9 @@ function onHover(div) {
 function unHighLight(div) {
 
     //test: the hovered element has change 
-    if (memEletSelect !== div && memEletSelect !== undefined) {
+    if (memEletSelect != div && memEletSelect != undefined) {
         var listChildNode = memEletSelect ? memEletSelect.childNodes : null;
-        if (listChildNode !== null) {
+        if (listChildNode != null) {
             for (var i = 1; i < (listChildNode.length - 1) / 2; i++) {
 
                 //in safari and chrome
@@ -148,7 +148,7 @@ function highLight(div) {
      
      }*/
 
-    if (memEletSelect === undefined && div.getAttribute("id") !== "g5k.") {
+    if (memEletSelect === undefined && div.getAttribute("id") != "g5k.") {
 
         for (var i = 1; i < (div.childNodes.length - 1) / 2; i++) {
             //in safari and chrome
