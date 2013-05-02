@@ -56,3 +56,6 @@ var svg = d3.select("#chart").append("svg")
 */ 
 var grandparent = svg.append("g")
     .attr("class", "grandparent");
+
+//current element hignlighted
+var memEletSelect ;
