@@ -5,75 +5,15 @@
         <title>Grid5000 Treemap</title>
     </head>
 <body>
-<!--<h2>Hello World!</h2>-->
-
-<!--
-<div id="chart">
-   </div>
-<div class="hashtags"></div>
-<a href="test.html">Lien vers la treemap</a>
-<a href="testsvg.html">Lien vers la treemapzoom color</a>
 
 
-<div id='msg'></div>
-<div id='stat'></div>
-
-
-<div id='stat'></div>
--->
 <p id="chart">
 <div class="bulle" id="bulle"></div>
 
 <script src="http://d3js.org/d3.v2.min.js?2.9.1"></script>
 <script src="./js/functionStyle.js"></script>
 
-<script>
-    /*
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET","http://localhost:8080/webapp/coucou",true);
-	xhr.send(null);
-	
-	xhr.onreadystatechange = function() { 
-    if (xhr.readyState == 4 && xhr.status == 200) {
- 
-        var i=0;
-        var reponse = xhr.responseText;
-        var jsonReponse= JSON.parse(reponse);
-        document.getElementById('msg').innerHTML = "fichier: </br> reponse recu</br>";
-        
-        var listSite = jsonReponse.grid5000;
-        
-        document.getElementById('stat').innerHTML = "</br> nombre de site: " + listSite.length + "</br> ";
-        document.getElementById('stat').innerHTML += "</br> liste de site: </br> ";
-
-        while(i < listSite.length){
-
-            document.getElementById('stat').innerHTML += listSite[i].id + ", " +listSite[i].Cluster.length + " cluster :" ;
-            var cluster= listSite[i].Cluster
-
-            for (cl in cluster){
-
-                document.getElementById('stat').innerHTML += cluster[cl].id + " " + cluster[cl].state + ", " ;
-
-                
-            }
-            document.getElementById('stat').innerHTML += "</br>";
-            i++;
-            
-        }
-        
-        
-
- 
-    } else {
-		document.getElementById('msg').innerHTML = 'error';
- 
-    }
- 
-};
-*/
-</script>
-
+<script src="/js/treemapVar.js"></script>
 <script src="/js/treemap.js"></script>
 
 </body>
