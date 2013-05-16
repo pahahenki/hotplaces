@@ -14,24 +14,6 @@ class Node:
 		self.pDiskSpace = random.randint(1,100)
 		self.vDiskSpace = random.randint(1,100)
 
-class Server:
-
-	def __init__(self,name):
-		self.name = name
-		self.children = []
-		self.pCPU = random.randint(1,100)
-		self.pRAM = random.randint(1,100)
-		self.pDiskSpace = random.randint(1,100)
-
-class VM:
-
-	def __init__(self,name,vCPU,vRAM,vDiskSpace):
-		self.name = name
-		self.children = []
-		self.vCPU = vCPU
-		self.vRAM = vRAM
-		self.vDiskSpace = vDiskSpace
-
 
 def makeCluster(id, nb):
 	cluster = Node(id)
@@ -44,63 +26,22 @@ def makeCluster(id, nb):
 
 
 def printNode(root):
-	#print root.name + " "
 	if root.children != []:
 		for i in range(len(root.children)):
 			printNode(root.children[i])
 
-def jsonGen2(root):
-
-	json = '{ "name" : "' + root.name + '"'
-	if root.children != []:
-		json += ', \n "children" : ['
-		for i in range(len(root.children)):
-			#json += ', \n "children" : ['
-			json += jsonGen2(root.children[i]) + ', '
-			for j in range(len(root.children[i].children)):
-				#json += ', \n "children" : ['
-				for k in range(len(root.children[i].children[j].children)):
-					#print(root.children[i].children[j].pCPU)
-					for l in range(len(root.children[i].children[j].children[k].children)):
-
-						json +=  '"name" :' + '"' + root.children[i].children[j].children[l].name + '" ,'
-						json += '"pCPU" : ' + str(root.children[i].children[j].pCPU) + ','
-						json += '"pRAM" : ' + str(root.children[i].children[j].pRAM) + ','
-						json += '"pDiskSpace" : ' + str(root.children[i].children[j].pDiskSpace)
-						json += ', \n "children" : ['
-					#for l in range(len(root.children[j].children[k].children)):
-						#print(root.children[i].children[j].children[k].name)
-						#json += ', \n "children" : ['
-						#print(root.children[i].children[j].children[k].name)
-						#for m in range(len(root.children[i].children[j].children[k].children)):
-							#print(root.children[i].children[j].children[k].children[l].vDiskSpace)
-						#	json += '"name :' + '"' + root.children[i].children[j].children[k].children[l].name + '" ,'
-						#	json +='"vCPU" : ' + str(root.children[i].children[j].children[k].children[l].vCPU) +','
-						#	json +='"vRAM" : ' + str(root.children[i].children[j].children[k].children[l].vRAM) + ','
-						#	json += '"vDiskSpace" :' + str(root.children[i].children[j].children[k].children[l].vDiskSpace)
-						#	json += '] \n'
-						#	json += '}'
-						#json += '] \n'
-						#json += '}'
-					json += '] \n'
-					json += '}'
-				json += '] \n'
-				json += '}'
-			json += '] \n'
-			json += '}'	
-	return json
-
-
 def jsonGen(root) :
+	cr = "-"
 	json = '{ "name" : "' + root.name + '" '
 	if(root.name != "g5k"):
 		if root.children == []:
-		#json +=', "pCPU" : ' + str(root.pCPU) 
-		#json +=', "pRAM" : ' + str(root.pRAM) 
-		#json += ', "pDiskSpace" :' + str(root.pDiskSpace)
 			json +=', "vCPU" : ' + str(root.vCPU) 
 			json +=', "vRAM" : ' + str(root.vRAM) 
 			json += ', "vDiskSpace" :' + str(root.vDiskSpace)
+		elif root.children[0].children == []:
+			json +=', "pCPU" : ' + str(root.pCPU) 
+			json +=', "pRAM" : ' + str(root.pRAM) 
+			json += ', "pDiskSpace" :' + str(root.pDiskSpace)
 	if root.children != []:
 		json += ', \n "children" : ['
 		for i in range(len(root.children)):
