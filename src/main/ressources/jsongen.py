@@ -93,12 +93,14 @@ def jsonGen2(root):
 
 def jsonGen(root) :
 	json = '{ "name" : "' + root.name + '" '
-	json +=', "pCPU" : ' + str(root.pCPU) 
-	json +=', "pRAM" : ' + str(root.pRAM) 
-	json += ', "pDiskSpace" :' + str(root.pDiskSpace)
-	json +=', "vCPU" : ' + str(root.vCPU) 
-	json +=', "vRAM" : ' + str(root.vRAM) 
-	json += ', "vDiskSpace" :' + str(root.vDiskSpace)
+	if(root.name != "g5k"):
+		if root.children == []:
+		#json +=', "pCPU" : ' + str(root.pCPU) 
+		#json +=', "pRAM" : ' + str(root.pRAM) 
+		#json += ', "pDiskSpace" :' + str(root.pDiskSpace)
+			json +=', "vCPU" : ' + str(root.vCPU) 
+			json +=', "vRAM" : ' + str(root.vRAM) 
+			json += ', "vDiskSpace" :' + str(root.vDiskSpace)
 	if root.children != []:
 		json += ', \n "children" : ['
 		for i in range(len(root.children)):
