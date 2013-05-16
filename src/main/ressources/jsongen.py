@@ -1,11 +1,13 @@
 
 import os
+import random
 
 class Node:
 
 	def __init__(self, name):
 		self.name = name
 		self.children = []
+        	self.ressource = str(random.randint(1,100))
 
 
 def makeCluster(id, nb):
@@ -26,7 +28,7 @@ def printNode(root):
 
 
 def jsonGen(root) :
-	json = '{ "name" : "' + root.name + '" '
+	json = '{ "name" : "' + root.name + '","ressource" :  ' + root.ressource
 	if root.children != []:
 		json += ', \n "children" : ['
 		for i in range(len(root.children)):

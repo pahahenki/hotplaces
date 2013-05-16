@@ -1,4 +1,3 @@
-
 /*
  * function
  * parameters : URI, callback function
@@ -6,14 +5,15 @@
  * a json structure and executes a callback function.
  */
 
-d3.json("http://localhost:8080/webapp/coucou", function(root) {
-  var nodes = [];
+
+  
  
 
   initialize(root);
   accumulate(root);
   layout(root);
   display(root);
+  currentRoot= root
  
   /*
    * function
@@ -68,6 +68,9 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
       });
     }
   }
+  
+
+
  
  /*
   * function
@@ -83,6 +86,21 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
     }
     return cpt;
   }
+ 
+  d3.selectAll("input").on("change", function change() {
+    var value = this.value === "count"
+        ? treemap.value(function(d) { return 2000 })
+        : treemap.value(function(d) { return d.ressource });
+       
+       accumulate(currentRoot);
+          layout(currentRoot);
+          gOld.transition().duration(300).remove().each("end", function() {
+                svg.style("shape-rendering", null);
+                transitioning = false;
+            });
+        display(currentRoot);
+        
+  });
  
  /*
   * function
@@ -142,12 +160,15 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .attr("lengthAdjust", "spacingAndGlyphs")
         .call(textChild);
 
+        gOld= g1;
  
     /*
      * function
      * parameters : node
      * description : change root by given parameter, used for zoomin/zoomout
      */
+
+  
     function transition(d) {
         remove();
         unHighLight(undefined);
@@ -187,6 +208,7 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
                 svg.style("shape-rendering", null);
                 transitioning = false;
             });
+            currentRoot= d;
         }
         
         /*
@@ -246,4 +268,4 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
   document.oncontextmenu=RightMouseDown;
   function RightMouseDown() { return false; } 
   
-});
+
