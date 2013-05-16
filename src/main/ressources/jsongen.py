@@ -1,5 +1,6 @@
 
 import os
+import random
 
 class Node:
 
@@ -7,13 +8,31 @@ class Node:
 		self.name = name
 		self.children = []
 
+class Server:
+
+	def __init__(self,name):
+		self.name = name
+		self.children = []
+		self.pCPU = random.randint(1,100)
+		self.pRAM = random.randint(1,100)
+		self.pDiskSpace = random.randint(1,100)
+
+class VM:
+
+	def __init__(self,name,vCPU,vRAM,vDiskSpace):
+		self.name = name
+		self.children = []
+		self.vCPU = vCPU
+		self.vRAM = vRAM
+		self.vDiskSpace = vDiskSpace
+
 
 def makeCluster(id, nb):
-	cluster = Node(id)
+	cluster = Server(id)
 	for i in range(nb):
-		node = Node(id + "-" + str(i+1))
+		node = Server(id + "-" + str(i+1))
 		for x in range(10):
-			node.children.append(Node("VM" + str(x+1)))
+			node.children.append(VM("VM" + str(x+1),random.randint(1,100) ,random.randint(1,100) , random.randint(1,100)))
 		cluster.children.append(node)
 	return cluster
 
@@ -24,17 +43,55 @@ def printNode(root):
 		for i in range(len(root.children)):
 			printNode(root.children[i])
 
+def jsonGen2(root):
 
-def jsonGen(root) :
-	json = '{ "name" : "' + root.name + '" '
+	json = '{ "name" : "' + root.name + '"'
 	if root.children != []:
 		json += ', \n "children" : ['
 		for i in range(len(root.children)):
-			json += jsonGen(root.children[i]) + ', '
-		json = json[:len(json)-2]
-		json += '] \n'
-	json += '}'
+			json += ', \n "children" : ['
+			for j in range(len(root.children[i].children)):
+				json += ', \n "children" : ['
+				for k in range(len(root.children[i].children[j].children)):
+					#print(root.children[i].children[j].pCPU)
+					json +=  '"name" :' + '"' + root.children[j].name + '" ,'
+					json += '"pCPU" : ' + str(root.children[i].children[j].pCPU) + ','
+					json += '"pRAM" : ' + str(root.children[i].children[j].pRAM) + ','
+					json += '"pDiskSpace" : ' + str(root.children[i].children[j].pDiskSpace)
+					json += ', \n "children" : ['
+					for l in range(len(root.children[k].children)):
+						#print("VM ajouter une boucle pour les vm")
+						json += ', \n "children" : ['
+						print(root.children[i].children[j].children[k].name)
+						for m in range(len(root.children[l].children)):
+							#print(root.children[l].name)
+							json += '"name :' + '"' + root.children[l].name + '" ,'
+							json +='"vCPU" : ' + str(root.children[i].children[j].children[k].children[l].vCPU) +','
+							json +='"vRAM" : ' + str(root.children[i].children[j].children[k].children[l].vRAM) + ','
+							json += '"vDiskSpace" :' + str(root.children[i].children[j].children[k].pDiskSpace)
+							json += '] \n'
+							json += '}'
+						json += '] \n'
+						json += '}'
+					json += '] \n'
+					json += '}'
+				json += '] \n'
+				json += '}'
+			json += '] \n'
+			json += '}'	
 	return json
+
+
+#def jsonGen(root) :
+#	json = '{ "name" : "' + root.name + '" '
+#	if root.children != []:
+#		json += ', \n "children" : ['
+#		for i in range(len(root.children)):
+#			json += jsonGen(root.children[i]) + ', '
+#		json = json[:len(json)-2]
+#		json += '] \n'
+#	json += '}'
+#	return json
 
 
 
@@ -97,7 +154,7 @@ toulouse.children.append(makeCluster("chocapique", 93))
 
 
 mock = open("g5kMock.json", "w")
-mock.write(jsonGen(g5k))
+mock.write(jsonGen2(g5k))
 mock.close()
 
 
