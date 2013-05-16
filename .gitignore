@@ -3,3 +3,17 @@ target
 *.iml
 .DS_Store
 
+
+src/main/.DS_Store
+
+target/tomcat/logs/access_log.2013-03-21
+
+
+src/main/ressources/.DS_Store
+
+src/main/webapp/.DS_Store
+
+src/main/webapp/js/.DS_Store
+
+.DS_Store
+

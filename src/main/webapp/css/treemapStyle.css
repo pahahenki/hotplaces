@@ -1,0 +1,50 @@
+rect {
+  fill: none;
+  stroke: #fff;
+}
+
+text {
+    pointer-events: none;
+}
+
+#chart {
+  margin: auto;
+  position: relative;
+  width: 960px;
+}
+
+.information {
+    margin: auto;
+    position: relative;
+    width: 960px;
+    height: 2em;
+    padding-top: 1em;
+    background-color: #EFEBA9;
+}
+
+.textChildren{
+	font-size: x-large;
+	text-anchor: middle;
+}
+
+.textChild{
+	font-style: italic;
+	font-size: smaller
+}
+
+.nodeLvl0 {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.nodeLvl1 {
+    font-size: large;
+}
+
+.nodeLvl2 {
+    font-size: medium;
+}
+
+.nodeLvl3 {
+    font-size: medium;
+}

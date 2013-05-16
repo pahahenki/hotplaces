@@ -1,28 +1,18 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <link href="/css/treemapStyle.css" rel="stylesheet">
+        <title>Grid5000 Treemap</title>
+    </head>
 <body>
-<h2>Hello World!</h2>
 
-<div id='msg'></div>
+<p id="chart">
+<div class="information" id="information"></div>
 
-<script>
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET","http://localhost:8080/webapp/coucou",true);
-	xhr.send(null);
-	
-	xhr.onreadystatechange = function() { 
-    if (xhr.readyState == 4 && xhr.status == 200) {
- 
-        document.getElementById('msg').innerHTML = '*' + xhr.responseText + '*';
- 
-    } else {
-		document.getElementById('msg').innerHTML = 'error';
- 
-    }
- 
-};
-
-</script>
-
+<script src="http://d3js.org/d3.v2.min.js?2.9.1"></script>
+<script src="/js/treemapVar.js"></script>
+<script src="./js/functionStyle.js"></script>
+<script src="/js/treemap.js"></script>
 
 </body>
 </html>
