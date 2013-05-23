@@ -8,7 +8,6 @@
 
 d3.json("http://localhost:8080/webapp/coucou", function(root) {
   var nodes = [];
- 
 
   initialize(root);
   accumulate(root);
@@ -83,6 +82,19 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
     }
     return cpt;
   }
+  
+   /*
+  * function
+  * parameters : node
+  * description : returns an array of the node's grandchildren
+  */
+  function grandChildren(d) {
+    var gc = Array();
+    for(var i in d.children) {
+        gc = gc.concat(d.children[i].children);
+    }
+    return gc;
+  }
  
  /*
   * function
@@ -90,10 +102,11 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
   * description : displays a node with its components
   */
   function display(d) {
-
+      
+ 
     // create attribute depth
     var g1 = svg.insert("g", ".grandparent")
-        .datum(d)
+        .datum(d.children)
         .attr("class", "depth");
  
     // sets parameters for "g" tag
@@ -103,11 +116,23 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .classed("children", true)
         .attr("name", function(d) { return d.depth ===3? d.parent.parent.name: (d.depth ===2? d.parent.name: (d.depth ===1? d.name: null)) ;})
         .attr("id", function(d){return getId(d);})
+        //.attr("stroke-width", "10")
         .on("click", function(d){d.children? transition(d): null;})
         .on("contextmenu", function(d) {d.parent.parent? mouseDown(d) : null; })
         .on("mouseover", function(d) { onHover(this);});
 
-    // sets parameters for "rect" tag
+/*var gg = g.selectAll("g").data(d.children).enter().append("g")
+        .classed("grandChildren", true)
+.attr("name", function(d) { return d.depth ===3? d.parent.parent.name: (d.depth ===2? d.parent.name: (d.depth ===1? d.name: null)) ;})
+        .attr("id", function(d){return getId(d);})
+        .on("click", function(d){d.children? transition(d): null;})
+        .on("contextmenu", function(d) {d.parent.parent? mouseDown(d) : null; })
+        .on("mouseover", function(d) { onHover(this);});;*/
+//console.log(gg);
+
+
+
+    // sets parameters for parent "rect" tag
     g.append("rect")
         .attr("class", "parent")
         .attr("stroke-width", "10")
@@ -116,6 +141,8 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .text(function(d) { return d.name; });
         
 
+    
+    /*
     // sets parameters for "child" classes
     g.selectAll(".child")
         .data(function(d) { return d.children || [d]; })
@@ -123,7 +150,44 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .attr("class", "child")
         .call(rect)
         .on("mouseout", function(d) {remove();})
+        .on("mouseover", function(d) {contextualMenu(d);})
+;
+*/
+    var g2 =  g.selectAll("g")
+        .data(function(d) { return d.children || [d]; })
+        .enter().append("g")
+        .classed("grandChild", true)
+        //.data(function(d) {return d.children ;})
+        .attr("stroke-width", "1")
+        .call(rect)
+        .on("mouseout", function(d) {remove();})
         .on("mouseover", function(d) {contextualMenu(d);});
+
+
+    var g3 = g2.selectAll("g")
+        .data(function(d) { return d.children || [d]; })
+        .enter().append("g")
+        .classed("grandGrandChild", true).append("rect")
+        //.data(function(d) {return d.children ;})
+        .attr("class",  "grandChild")
+        .attr("stroke-width", "1")
+        .call(rect)
+        .on("mouseout", function(d) {remove();})
+        .on("mouseover", function(d) {contextualMenu(d);})
+;
+
+/*
+    // draws grand children when depth is 1
+    g.selectAll(".grandChild")
+        .data(function(d) {return treeDepth(d) === 1? grandChildren(d) : {} ;})
+        .enter()
+        .append("rect")
+        .attr("class", "grandChild")
+        .call(rect)
+        .on("mouseout", function(d) {remove();})
+        .on("mouseover", function(d) {contextualMenu(d);})
+;
+*/
  
     // prints a text on a node
     g.append("text")
@@ -137,7 +201,8 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .data(function(d) { return d.children || [d]; })
         .enter().append("text")
         .attr("class", "textChild")
-        .text(function(d) { return x(d.dx)>30? d.name: null; })
+        //.text(function(d) { return x(d.dx)>30? d.name: null; })
+        .text(function(d) { return d.name})
         .attr("dy", ".75em")
         .attr("lengthAdjust", "spacingAndGlyphs")
         .call(textChild);
@@ -187,6 +252,7 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
                 svg.style("shape-rendering", null);
                 transitioning = false;
             });
+            
         }
         
         /*
@@ -240,7 +306,8 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .attr("y", function(d) { return y(d.y); })
         .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
         .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-        .style("fill", function(d) { return color(d.name); });
+        .style("fill", "#109D00" );
+        //.style("fill", function(d) { return color(d.name); });
   }
   
   document.oncontextmenu=RightMouseDown;
