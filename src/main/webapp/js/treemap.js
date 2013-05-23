@@ -137,8 +137,11 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .data(function(d) { return d.children || [d]; })
         .enter().append("g")
         .classed("grandChild", true)
+        .attr("name", function(d) { return d.depth ===3? d.parent.parent.name: (d.depth ===2? d.parent.name: (d.depth ===1? d.name: null)) ;})
+        .attr("id", function(d){return getId(d);})
         .call(rect)
-        .on("mouseover", function(d) {onHover(this);})
+        .on("mouseover", function(d) {onHover(this.parentNode);})
+        
 ;
 
     g2.append("rect").attr("class", "grandChildren")
@@ -149,8 +152,7 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
 
     g2.selectAll("g")
         .data(function(d) { return d.children || [d]; })
-        .enter().append("g")
-        .classed("grandGrandChild", true)
+        .enter()
         .append("rect")
         .attr("class",  "grandChild")
         .attr("stroke-width", "1")
