@@ -116,43 +116,21 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .classed("children", true)
         .attr("name", function(d) { return d.depth ===3? d.parent.parent.name: (d.depth ===2? d.parent.name: (d.depth ===1? d.name: null)) ;})
         .attr("id", function(d){return getId(d);})
-        //.attr("stroke-width", "10")
         .on("click", function(d){d.children? transition(d): null;})
         .on("contextmenu", function(d) {d.parent.parent? mouseDown(d) : null; })
-        .on("mouseover", function(d) { onHover(this);});
 
-/*var gg = g.selectAll("g").data(d.children).enter().append("g")
-        .classed("grandChildren", true)
-.attr("name", function(d) { return d.depth ===3? d.parent.parent.name: (d.depth ===2? d.parent.name: (d.depth ===1? d.name: null)) ;})
-        .attr("id", function(d){return getId(d);})
-        .on("click", function(d){d.children? transition(d): null;})
-        .on("contextmenu", function(d) {d.parent.parent? mouseDown(d) : null; })
-        .on("mouseover", function(d) { onHover(this);});;*/
-//console.log(gg);
-
+        ;
 
 
     // sets parameters for parent "rect" tag
     g.append("rect")
         .attr("class", "parent")
-        .attr("stroke-width", "10")
+        .attr("stroke-width", "12")
         .call(rect)
         .append("title")
-        .text(function(d) { return d.name; });
-        
+        .text(function(d) { return d.name; })
 
-    
-    /*
-    // sets parameters for "child" classes
-    g.selectAll(".child")
-        .data(function(d) { return d.children || [d]; })
-        .enter().append("rect")
-        .attr("class", "child")
-        .call(rect)
-        .on("mouseout", function(d) {remove();})
-        .on("mouseover", function(d) {contextualMenu(d);})
 ;
-*/
 
 
     var g2 =  g.selectAll("g")
@@ -160,41 +138,27 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .enter().append("g")
         .classed("grandChild", true)
         .call(rect)
+        .on("mouseover", function(d) {onHover(this);})
 ;
 
     g2.append("rect").attr("class", "grandChildren")
-        .attr("stroke-width", "3")
+        .attr("stroke-width", "5")
         .call(rect)
 ;
         
 
-
-    var g3 = g2.selectAll("g")
+    g2.selectAll("g")
         .data(function(d) { return d.children || [d]; })
         .enter().append("g")
         .classed("grandGrandChild", true)
         .append("rect")
         .attr("class",  "grandChild")
-        .attr("stroke", "black")
-        .attr("stroke-width", "0")
+        .attr("stroke-width", "1")
         .call(rect)
         .on("mouseout", function(d) {remove();})
         .on("mouseover", function(d) {contextualMenu(d);})
 ;
 
-
-/*
-    // draws grand children when depth is 1
-    g.selectAll(".grandChild")
-        .data(function(d) {return treeDepth(d) === 1? grandChildren(d) : {} ;})
-        .enter()
-        .append("rect")
-        .attr("class", "grandChild")
-        .call(rect)
-        .on("mouseout", function(d) {remove();})
-        .on("mouseover", function(d) {contextualMenu(d);})
-;
-*/
  
     // prints a text on a node
     g.append("text")
