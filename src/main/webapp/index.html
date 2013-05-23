@@ -6,10 +6,15 @@
     </head>
 <body>
 <div class="navigationBar" id="navigationBar">
-	<form>
-  <label><input type="radio" name="mode" value="size" checked> Size</label>
-  <label><input type="radio" name="mode" value="count"> Count</label>
-</form>
+    <form id="search_form" onsubmit='return false;'>
+        <label><input type="radio" name="mode" value="size" > Size</label>
+        <label><input type="radio" name="mode" value="count" checked> Count</label>
+        <br>
+        <label>
+            <input id="search_field" type="search" name="keywords" size="31" placeholder="Enter Keyword" autofocus/>
+            <input id="search_button" type="button" value="Find" />
+        </label>
+    </form>
 </div>
 <p id="chart">
 <div class="information" id="information"></div>

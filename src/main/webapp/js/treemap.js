@@ -5,13 +5,12 @@
  * a json structure and executes a callback function.
  */
 
-
-
   initialize(root);
   accumulate(root);
   layout(root);
   display(root);
-  currentRoot= root
+  currentRoot= root;
+  
  
   /*
    * function
@@ -85,6 +84,9 @@
     return cpt;
   }
   
+  function common_ancestor(keywords) {
+      //TODO find common ancestor
+      return keywords;
    /*
   * function
   * parameters : node
@@ -119,8 +121,7 @@
   * description : displays a node with its components
   */
   function display(d) {
-      
- 
+
     // create attribute depth
     var g1 = svg.insert("g", ".grandparent")
         .datum(d.children)
@@ -251,6 +252,12 @@
             
 
         }
+        
+        //search function
+        var search_field = document.getElementById('search_field');
+        console.log("transistion vers " + search_field.value);
+        if(search_field.value.length !== 0)
+            transition(root);
         
         /*
          * function
