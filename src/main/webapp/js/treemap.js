@@ -153,28 +153,35 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .on("mouseover", function(d) {contextualMenu(d);})
 ;
 */
+
+
     var g2 =  g.selectAll("g")
         .data(function(d) { return d.children || [d]; })
         .enter().append("g")
         .classed("grandChild", true)
-        //.data(function(d) {return d.children ;})
-        .attr("stroke-width", "1")
         .call(rect)
-        .on("mouseout", function(d) {remove();})
-        .on("mouseover", function(d) {contextualMenu(d);});
+;
+
+    g2.append("rect").attr("class", "grandChildren")
+        .attr("stroke-width", "3")
+        .call(rect)
+;
+        
 
 
     var g3 = g2.selectAll("g")
         .data(function(d) { return d.children || [d]; })
         .enter().append("g")
-        .classed("grandGrandChild", true).append("rect")
-        //.data(function(d) {return d.children ;})
+        .classed("grandGrandChild", true)
+        .append("rect")
         .attr("class",  "grandChild")
-        .attr("stroke-width", "1")
+        .attr("stroke", "black")
+        .attr("stroke-width", "0")
         .call(rect)
         .on("mouseout", function(d) {remove();})
         .on("mouseover", function(d) {contextualMenu(d);})
 ;
+
 
 /*
     // draws grand children when depth is 1
@@ -202,7 +209,7 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .enter().append("text")
         .attr("class", "textChild")
         //.text(function(d) { return x(d.dx)>30? d.name: null; })
-        .text(function(d) { return d.name})
+        .text(function(d) { return d.name;})
         .attr("dy", ".75em")
         .attr("lengthAdjust", "spacingAndGlyphs")
         .call(textChild);
