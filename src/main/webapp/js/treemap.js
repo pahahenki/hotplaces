@@ -6,8 +6,6 @@
  */
 
 
-  
- 
 
   initialize(root);
   accumulate(root);
@@ -86,6 +84,19 @@
     }
     return cpt;
   }
+  
+   /*
+  * function
+  * parameters : node
+  * description : returns an array of the node's grandchildren
+  */
+  function grandChildren(d) {
+    var gc = Array();
+    for(var i in d.children) {
+        gc = gc.concat(d.children[i].children);
+    }
+    return gc;
+  }
  
   d3.selectAll("input").on("change", function change() {
     var value = this.value === "count"
@@ -108,10 +119,11 @@
   * description : displays a node with its components
   */
   function display(d) {
-
+      
+ 
     // create attribute depth
     var g1 = svg.insert("g", ".grandparent")
-        .datum(d)
+        .datum(d.children)
         .attr("class", "depth");
  
     // sets parameters for "g" tag
@@ -123,25 +135,49 @@
         .attr("id", function(d){return getId(d);})
         .on("click", function(d){d.children? transition(d): null;})
         .on("contextmenu", function(d) {d.parent.parent? mouseDown(d) : null; })
-        .on("mouseover", function(d) { onHover(this);});
 
-    // sets parameters for "rect" tag
+        ;
+
+
+    // sets parameters for parent "rect" tag
     g.append("rect")
         .attr("class", "parent")
-        .attr("stroke-width", "10")
+        .attr("stroke-width", "12")
         .call(rect)
         .append("title")
-        .text(function(d) { return d.name; });
+        .text(function(d) { return d.name; })
+
+;
+
+
+    var g2 =  g.selectAll("g")
+        .data(function(d) { return d.children || [d]; })
+        .enter().append("g")
+        .classed("grandChild", true)
+        .attr("name", function(d) { return d.depth ===3? d.parent.parent.name: (d.depth ===2? d.parent.name: (d.depth ===1? d.name: null)) ;})
+        .attr("id", function(d){return getId(d);})
+        .call(rect)
+        .on("mouseover", function(d) {onHover(this.parentNode);})
+        
+;
+
+    g2.append("rect").attr("class", "grandChildren")
+        .attr("stroke-width", "5")
+        .call(rect)
+;
         
 
-    // sets parameters for "child" classes
-    g.selectAll(".child")
+    g2.selectAll("g")
         .data(function(d) { return d.children || [d]; })
-        .enter().append("rect")
-        .attr("class", "child")
+        .enter()
+        .append("rect")
+        .attr("class",  "grandChild")
+        .attr("stroke-width", "1")
         .call(rect)
         .on("mouseout", function(d) {remove();})
-        .on("mouseover", function(d) {contextualMenu(d);});
+        .on("mouseover", function(d) {contextualMenu(d);})
+;
+
  
     // prints a text on a node
     g.append("text")
@@ -155,7 +191,8 @@
         .data(function(d) { return d.children || [d]; })
         .enter().append("text")
         .attr("class", "textChild")
-        .text(function(d) { return x(d.dx)>30? d.name: null; })
+        //.text(function(d) { return x(d.dx)>30? d.name: null; })
+        .text(function(d) { return d.name;})
         .attr("dy", ".75em")
         .attr("lengthAdjust", "spacingAndGlyphs")
         .call(textChild);
@@ -208,7 +245,11 @@
                 svg.style("shape-rendering", null);
                 transitioning = false;
             });
+
             currentRoot= d;
+
+            
+
         }
         
         /*
@@ -262,7 +303,8 @@
         .attr("y", function(d) { return y(d.y); })
         .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
         .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-        .style("fill", function(d) { return color(d.name); });
+        .style("fill", "#109D00" );
+        //.style("fill", function(d) { return color(d.name); });
   }
   
   document.oncontextmenu=RightMouseDown;

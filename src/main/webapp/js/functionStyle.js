@@ -79,15 +79,16 @@ function unHighLight(div) {
         var listChildNode = memEletSelect ? memEletSelect.childNodes : null;
         if (listChildNode != null) {
             for (var i = 1; i < (listChildNode.length - 1) / 2; i++) {
-
+	            var current = listChildNode[i];
+	            for(var j = 1; j < current.childNodes.length; j++){
                 //in safari and chrome
-                var color = listChildNode[i].style.fill;
+                var color = current.childNodes[j].style.fill;
                 if (color[0] === "#") {
                     color = hexToRgb(color);
                     color.r += 50;
                     color.g += 50;
                     color.b += 50;
-                    listChildNode[i].style.fill = "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+                    current.childNodes[j].style.fill = "rgb(" + color.r + "," + color.g + "," + color.b + ")";
                 }
                 //in opera and firefox
                 if (color[0] === "r") {
@@ -95,10 +96,11 @@ function unHighLight(div) {
                     var r = parseInt(color[0].slice(4)) + 50;
                     var g = parseInt(color[1]) + 50;
                     var b = parseInt(color[2].slice(0, color[2].length - 1)) + 50;
-                    listChildNode[i].style.fill = "rgb(" + r + "," + g + "," + b + ")";
+                    current.childNodes[j].style.fill = "rgb(" + r + "," + g + "," + b + ")";
 
 
                 }
+            }
             }
             memEletSelect.style.border = "";
             memEletSelect.style.backgroundColor = "";
@@ -117,59 +119,34 @@ function unHighLight(div) {
  */
 function highLight(div) {
 
-    /*if(memEletSelect != div && memEletSelect != undefined && div.getAttribute("id") !="g5k."){
-     
-     for( var i = 1; i < div.childNodes.length-1; i++){
-     
-     //in safari and chrome
-     var color =div.childNodes[i].style.fill;
-     if(color[0] === "#"){
-     color = hexToRgb(color);
-     color.r -=  50;
-     color.g -= 50;
-     color.b -= 50;
-     div.childNodes[i].style.fill= "rgb("+color.r+","+color.g+","+color.b+")";
-     }
-     //in opera and firefox
-     if(color[0]==="r"){
-     color=color.split(",");
-     var r = parseInt(color[0].slice(4))-50;
-     var g= parseInt(color[1]) -50;
-     var b = parseInt(color[2].slice(0,color[2].length-1)) -50;
-     div.childNodes[i].style.fill= "rgb("+r+","+g+","+b+")";
-     
-     
-     }
-     }
-     
-     div.childNodes[i].style.border=" solid 1px rgb(230,230,230)";
-     div.childNodes[i].style.backgroundColor="rgb(230,230,230)";
-     
-     
-     }*/
-
+	
     if (memEletSelect === undefined && div.getAttribute("id") != "g5k.") {
-
         for (var i = 1; i < (div.childNodes.length - 1) / 2; i++) {
             //in safari and chrome
-            var color = div.childNodes[i].style.fill;
+            var current = div.childNodes[i];
+            for(var j = 1; j < current.childNodes.length; j++ ){
+	            
+            
+            var color = current.childNodes[j].style.fill;
             if (color[0] === "#") {
                 color = hexToRgb(color);
                 color.r -= 50;
                 color.g -= 50;
                 color.b -= 50;
-                div.childNodes[i].style.fill = "rgb(" + color.r + "," + color.g + "," + color.b + ")";
-            }
+                current.childNodes[j].style.fill = "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+                }
+            
             //in opera and firefox
             if (color[0] === "r") {
                 color = color.split(",");
                 var r = parseInt(color[0].slice(4)) - 50;
                 var g = parseInt(color[1]) - 50;
                 var b = parseInt(color[2].slice(0, color[2].length - 1)) - 50;
-                div.childNodes[i].style.fill = "rgb(" + r + "," + g + "," + b + ")";
+                current.childNodes[j].style.fill = "rgb(" + r + "," + g + "," + b + ")";
 
 
             }
+        }
         }
 
         div.style.border = " solid 1px rgb(230,230,230)";
