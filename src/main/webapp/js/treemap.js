@@ -87,6 +87,7 @@
   function common_ancestor(keywords) {
       //TODO find common ancestor
       return keywords;
+      }
    /*
   * function
   * parameters : node
