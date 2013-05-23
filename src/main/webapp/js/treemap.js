@@ -98,6 +98,7 @@
         gc = gc.concat(d.children[i].children);
     }
     return gc;
+
   }
  
   d3.selectAll("input").on("change", function change() {
@@ -122,6 +123,7 @@
   */
   function display(d) {
 
+    
     // create attribute depth
     var g1 = svg.insert("g", ".grandparent")
         .datum(d.children)
