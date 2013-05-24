@@ -12,7 +12,7 @@ var gOld;
 */
 var margin = {top: 5, right: 10, bottom: 10, left: 10},
     width = window.innerWidth - margin.left - margin.right,
-    height =  window.innerHeight*0.9 - margin.top - margin.bottom,
+    height =  window.innerHeight*0.8 - margin.top - margin.bottom,
     formatNumber = d3.format(",d"),
     color = d3.scale.category20(),
     transitioning;

@@ -2,7 +2,7 @@ window.onresize = function (e) {
 	console.log(window.innerWidth);
 	if(window.innerWidth>800){
 	width = window.innerWidth - margin.left - margin.right;
-    height =  window.innerWidth/2 - margin.top - margin.bottom;
+    height =  window.innerHeight*0.8 - margin.top - margin.bottom;
     var svgTag= document.getElementById('svg');
 	svgTag.setAttribute("width", window.innerWidth);
 	svgTag.setAttribute("height", window.innerWidth/2);
