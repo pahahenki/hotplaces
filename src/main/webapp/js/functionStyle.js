@@ -1,3 +1,28 @@
+window.onresize = function (e) {
+	console.log(window.innerWidth);
+	if(window.innerWidth>800){
+	width = window.innerWidth - margin.left - margin.right;
+    height =  window.innerWidth/2 - margin.top - margin.bottom;
+    var svgTag= document.getElementById('svg');
+	svgTag.setAttribute("width", window.innerWidth);
+	svgTag.setAttribute("height", window.innerWidth/2);
+	treemap.ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
+	gOld.transition().duration(300).remove().each("end", function() {
+                svg.style("shape-rendering", null);
+                transitioning = false;
+            });
+	initialize(currentRoot);
+	//accumulate(currentRoot);
+    layout(currentRoot);
+    display(currentRoot);
+    
+    }
+
+	
+	
+	}
+	
+
 /*function:
  ** parameter: current hovered node
  ** description: display informations of on the hovered element (d)*/

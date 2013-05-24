@@ -11,8 +11,8 @@ var gOld;
 **description: definition for the aspect of treemap with d3.js
 */
 var margin = {top: 50, right: 10, bottom: 10, left: 10},
-    width = 1000 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom,
+    width = window.innerWidth - margin.left - margin.right,
+    height =  window.innerWidth/2 - margin.top - margin.bottom,
     formatNumber = d3.format(",d"),
     color = d3.scale.category20(),
     transitioning;
@@ -51,6 +51,7 @@ var treemap = d3.layout.treemap()
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.bottom + margin.top)
+    .attr("id", "svg")
     .attr("onmouseout", "unHighLight(undefined);")
     .style("margin-left", -margin.left + "px")
     .style("margin.right", -margin.right + "px")
