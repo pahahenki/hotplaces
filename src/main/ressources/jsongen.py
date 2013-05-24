@@ -1,19 +1,28 @@
 
 import os
 import random
+import uuid
 
 class Node:
 
 	def __init__(self, name):
 		self.name = name
 		self.children = []
-		self.pCPU = random.randint(1,100)
-		self.vCPU = random.randint(1,100)
-		self.pRAM = random.randint(1,100)
-		self.vRAM = random.randint(1,100)
-		self.pDiskSpace = random.randint(1,100)
-		self.vDiskSpace = random.randint(1,100)
+		#on doit respecter le ration tel que v:p >= 1 jamais plus de ressources virtuelle que de physique
 
+		#self.ratio = self.pDiskSpace / self.vDiskSpace
+		self.pCPU = random.randint(20,100)#Ghz
+		#self.vCPU = self.pCPU - random.randint(1,10)#Ghz
+		equi = self.pCPU - random.randint(1,self.pCPU)
+		if(equi >= self.pCPU):
+			equi = self.pCPU - random.randint(1,self.pCPU)
+		self.vCPU = equi
+		self.pRAM = random.randint(1,20)#Go
+		self.vRAM = random.randint(1,20)#Go
+		self.pDiskSpace = random.randint(100,10000)#Go
+		self.vDiskSpace = random.randint(100,10000)#Go
+		self.uuid =  uuid.uuid4()
+		#calculer et allouer l'espace en fonction des ressources physique disponible(en fonction du ratio)
 
 def makeCluster(id, nb):
 	cluster = Node(id)
@@ -31,13 +40,13 @@ def printNode(root):
 			printNode(root.children[i])
 
 def jsonGen(root) :
-	cr = "-"
 	json = '{ "name" : "' + root.name + '" '
 	if(root.name != "g5k"):
 		if root.children == []:
 			json +=', "vCPU" : ' + str(root.vCPU) 
 			json +=', "vRAM" : ' + str(root.vRAM) 
 			json += ', "vDiskSpace" :' + str(root.vDiskSpace)
+			json += ', "uuid" :' + str(root.uuid)
 		elif root.children[0].children == []:
 			json +=', "pCPU" : ' + str(root.pCPU) 
 			json +=', "pRAM" : ' + str(root.pRAM) 
@@ -46,6 +55,7 @@ def jsonGen(root) :
 		json += ', \n "children" : ['
 		for i in range(len(root.children)):
 			json += jsonGen(root.children[i]) + ', '
+			#print(root.children[i].vCPU)
 		json = json[:len(json)-2]
 		json += '] \n'
 	json += '}'
