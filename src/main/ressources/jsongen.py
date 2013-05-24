@@ -21,7 +21,7 @@ class Node:
 		self.vRAM = random.randint(1,20)#Go
 		self.pDiskSpace = random.randint(100,10000)#Go
 		self.vDiskSpace = random.randint(100,10000)#Go
-		self.uuid =  uuid.uuid4()
+		#self.uuid =  uuid.uuid4()
 		#calculer et allouer l'espace en fonction des ressources physique disponible(en fonction du ratio)
 
 def makeCluster(id, nb):
@@ -29,7 +29,8 @@ def makeCluster(id, nb):
 	for i in range(nb):
 		node = Node(id + "-" + str(i+1))
 		for x in range(10):
-			node.children.append(Node("VM" + str(x+1)))
+			#node.children.append(Node("VM" + str(x+1)))
+			node.children.append(Node("uuid" + str(uuid.uuid4())))
 		cluster.children.append(node)
 	return cluster
 
@@ -46,7 +47,7 @@ def jsonGen(root) :
 			json +=', "vCPU" : ' + str(root.vCPU) 
 			json +=', "vRAM" : ' + str(root.vRAM) 
 			json += ', "vDiskSpace" :' + str(root.vDiskSpace)
-			json += ', "uuid" :' + str(root.uuid)
+			#json += ', "uuid" :' + str(root.uuid)
 		elif root.children[0].children == []:
 			json +=', "pCPU" : ' + str(root.pCPU) 
 			json +=', "pRAM" : ' + str(root.pRAM) 
