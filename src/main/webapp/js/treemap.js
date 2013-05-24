@@ -109,7 +109,7 @@
   
   function common_ancestor(keywords) {
       //TODO find common ancestor
-      var nodes = getNodes(keywords.split(","), root);
+      var nodes = getNodes(keywords.replace(/\s/g, "").split(","), root);
       console.log(nodes);
       return nodes;
   }
