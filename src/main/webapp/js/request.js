@@ -7,6 +7,7 @@ req.onreadystatechange=function()
     {
     root= JSON.parse(req.responseText);
     //console.log(root);
+    inaltered_Root = root
 
     }
   }

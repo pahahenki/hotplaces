@@ -111,7 +111,6 @@
       //TODO find common ancestor
       var nodes = getNodes(keywords.replace(/\s/g, "").split(","), root);
       console.log(nodes);
-      console.log(root);
       return nodes[0];
   }
   
@@ -289,8 +288,8 @@
         if(search_field.value.length !== 0) {
             console.log("searching '" + search_field.value + "'");
             var new_node = common_ancestor(search_field.value);
-            
-            transition(new_node);
+            //if(d.parent) transition(inaltered_Root);
+            //transition(new_node);
         }
 
        
