@@ -14,6 +14,16 @@ text {
   min-width: 400px;
 }
 
+#ressources{
+	float: left;
+}
+
+#search{
+	  float: right;
+	  
+	
+}
+
 .information {
     margin: auto;
     position: relative;

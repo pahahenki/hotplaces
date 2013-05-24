@@ -7,13 +7,17 @@
 <body>
 <div class="navigationBar" id="navigationBar">
     <form id="search_form" onsubmit='return false;'>
+    	<span id = "ressources">
         <label><input type="radio" name="mode" value="size" > Size</label>
         <label><input type="radio" name="mode" value="count" checked> Count</label>
-        <br>
-        <label>
+    	</span>
+    	
+    	<span id="search">
+        <label >
             <input id="search_field" type="search" name="keywords" size="31" placeholder="Enter Keyword" autofocus/>
             <input id="search_button" type="button" value="Find" />
         </label>
+    	</span>
     </form>
 </div>
 <p id="chart">

@@ -10,9 +10,9 @@ var gOld;
 **variables: margin width height formatNumber color transitioning
 **description: definition for the aspect of treemap with d3.js
 */
-var margin = {top: 50, right: 10, bottom: 10, left: 10},
+var margin = {top: 5, right: 10, bottom: 10, left: 10},
     width = window.innerWidth - margin.left - margin.right,
-    height =  window.innerWidth/2 - margin.top - margin.bottom,
+    height =  window.innerHeight*0.9 - margin.top - margin.bottom,
     formatNumber = d3.format(",d"),
     color = d3.scale.category20(),
     transitioning;
