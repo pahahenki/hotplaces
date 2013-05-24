@@ -10,7 +10,7 @@ text {
 #chart {
   margin: auto;
   position: relative;
-  width: 960px;
+  width: 100%;
 }
 
 .information {

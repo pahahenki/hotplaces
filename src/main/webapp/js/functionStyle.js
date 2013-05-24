@@ -1,3 +1,13 @@
+window.onresize = function (e) {
+	console.log('toto');
+	var svgTag= document.getElementById('svg');
+	console.log(svgTag.getAttribute("width"));
+	svgTag.setAttribute("width", window.innerWidth);
+	svgTag.setAttribute("height", window.innerWidth/2);
+	console.log(svgTag.getAttribute("width"));
+	
+	}
+
 /*function:
  ** parameter: current hovered node
  ** description: display informations of on the hovered element (d)*/
