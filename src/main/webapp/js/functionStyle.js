@@ -1,12 +1,29 @@
 window.onresize = function (e) {
-	console.log('toto');
-	var svgTag= document.getElementById('svg');
-	console.log(svgTag.getAttribute("width"));
+
+
+	console.log(window.innerWidth);
+	if(window.innerWidth>800){
+	width = window.innerWidth - margin.left - margin.right;
+    height =  window.innerHeight*0.8 - margin.top - margin.bottom;
+    var svgTag= document.getElementById('svg');
 	svgTag.setAttribute("width", window.innerWidth);
 	svgTag.setAttribute("height", window.innerWidth/2);
-	console.log(svgTag.getAttribute("width"));
+	treemap.ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
+	gOld.transition().duration(300).remove().each("end", function() {
+                svg.style("shape-rendering", null);
+                transitioning = false;
+            });
+	initialize(currentRoot);
+	//accumulate(currentRoot);
+    layout(currentRoot);
+    display(currentRoot);
+    
+    }
+
+	
 	
 	}
+
 
 /*function:
  ** parameter: current hovered node

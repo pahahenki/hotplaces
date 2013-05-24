@@ -1,10 +1,19 @@
+var root;
+var currentRoot;
+
+var nodes= [] ;
+
+
+var gOld;
+
 /*
 **variables: margin width height formatNumber color transitioning
 **description: definition for the aspect of treemap with d3.js
 */
-var margin = {top: 50, right: 10, bottom: 10, left: 10},
+
+var margin = {top: 5, right: 10, bottom: 10, left: 10},
     width = window.innerWidth - margin.left - margin.right,
-    height = window.innerWidth/2 - margin.top - margin.bottom,
+    height =  window.innerHeight*0.8 - margin.top - margin.bottom,
     formatNumber = d3.format(",d"),
     color = d3.scale.category20(),
     transitioning;
@@ -31,10 +40,10 @@ var y = d3.scale.linear()
 */ 
 var treemap = d3.layout.treemap()
     .children(function(d, depth) { return depth ? null : d.children; })
-    .sort(function(a, b) { return a.value - b.value; })
+    //.sort(function(a, b) { return a.value - b.value; })
     .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
     .round(false)
-    .value(function(d) { return d.size? d.size : 3000 ; });
+    .value(function(d) { return d.ressources? d.ressource : 1000 ; });
 
 /*
 **variable: svg
@@ -44,6 +53,7 @@ var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("id", "svg")
     .attr("height", height + margin.bottom + margin.top)
+    .attr("id", "svg")
     .attr("onmouseout", "unHighLight(undefined);")
     .style("margin-left", -margin.left + "px")
     .style("margin.right", -margin.right + "px")

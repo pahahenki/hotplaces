@@ -9,14 +9,25 @@ text {
 
 #chart {
   margin: auto;
-  position: relative;
   width: 100%;
+  min-width: 400px;
+}
+
+#ressources{
+	float: left;
+}
+
+#search{
+	  float: right;
+	  
+	
 }
 
 .information {
     margin: auto;
     position: relative;
-    width: 960px;
+    width: 100%;
+    min-width: 400px;
     height: 2em;
     padding-top: 1em;
     background-color: #EFEBA9;

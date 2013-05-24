@@ -1,4 +1,3 @@
-
 /*
  * function
  * parameters : URI, callback function
@@ -6,13 +5,12 @@
  * a json structure and executes a callback function.
  */
 
-d3.json("http://localhost:8080/webapp/coucou", function(root) {
-  var nodes = [];
-
   initialize(root);
   accumulate(root);
   layout(root);
   display(root);
+  currentRoot= root;
+  
  
   /*
    * function
@@ -67,6 +65,9 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
       });
     }
   }
+  
+
+
  
  /*
   * function
@@ -83,6 +84,10 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
     return cpt;
   }
   
+  function common_ancestor(keywords) {
+      //TODO find common ancestor
+      return keywords;
+      }
    /*
   * function
   * parameters : node
@@ -94,7 +99,23 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         gc = gc.concat(d.children[i].children);
     }
     return gc;
+
   }
+ 
+  d3.selectAll("input").on("change", function change() {
+    var value = this.value === "count"
+        ? treemap.value(function(d) { return 2000 })
+        : treemap.value(function(d) { return d.ressource });
+       
+       accumulate(currentRoot);
+          layout(currentRoot);
+          gOld.transition().duration(300).remove().each("end", function() {
+                svg.style("shape-rendering", null);
+                transitioning = false;
+            });
+        display(currentRoot);
+        
+  });
  
  /*
   * function
@@ -102,8 +123,9 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
   * description : displays a node with its components
   */
   function display(d) {
-      
- 
+
+	  
+    
     // create attribute depth
     var g1 = svg.insert("g", ".grandparent")
         .datum(d.children)
@@ -180,12 +202,15 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
         .attr("lengthAdjust", "spacingAndGlyphs")
         .call(textChild);
 
+        gOld= g1;
  
     /*
      * function
      * parameters : node
      * description : change root by given parameter, used for zoomin/zoomout
      */
+
+  
     function transition(d) {
         remove();
         unHighLight(undefined);
@@ -225,8 +250,18 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
                 svg.style("shape-rendering", null);
                 transitioning = false;
             });
+
+            currentRoot= d;
+
             
+
         }
+        
+        //search function
+        var search_field = document.getElementById('search_field');
+        console.log("transistion vers " + search_field.value);
+        if(search_field.value.length !== 0)
+            transition(root);
         
         /*
          * function
@@ -286,4 +321,4 @@ d3.json("http://localhost:8080/webapp/coucou", function(root) {
   document.oncontextmenu=RightMouseDown;
   function RightMouseDown() { return false; } 
   
-});
+
