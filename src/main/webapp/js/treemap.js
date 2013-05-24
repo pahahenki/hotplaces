@@ -84,10 +84,36 @@
     return cpt;
   }
   
+  //Returns true if a string is an occurence of one of the array strings
+  function isIn(array, str) {
+      for(var i = 0; i< array.length; i++) {
+          if(str.indexOf(array[i]) !== -1 && array[i].length !== 0)
+              return true;
+      }
+      return false;
+  }
+  
+  
+  //Returns the nodes that matches the node_names search
+  function getNodes(node_names, d) {
+      var nodes = Array();
+      if(isIn(node_names,d.name)) nodes = nodes.concat(d);
+      if(! d.children) return null;
+      for(var i =1; i< d.children.length; i++) {
+          var res = getNodes(node_names, d.children[i]);
+          if(res !== null)
+              nodes = nodes.concat(res);
+      }
+      return nodes;
+  }
+  
   function common_ancestor(keywords) {
       //TODO find common ancestor
-      return keywords;
-      }
+      var nodes = getNodes(keywords.split(","), root);
+      console.log(nodes);
+      return nodes;
+  }
+  
    /*
   * function
   * parameters : node
@@ -259,9 +285,12 @@
         
         //search function
         var search_field = document.getElementById('search_field');
-        console.log("transistion vers " + search_field.value);
-        if(search_field.value.length !== 0)
-            transition(root);
+        if(search_field.value.length !== 0) {
+            console.log("searching '" + search_field.value + "'");
+            var new_node = common_ancestor(search_field.value);
+        }
+
+       
         
         /*
          * function
