@@ -99,7 +99,7 @@
       var nodes = Array();
       if(isIn(node_names,d.name)) nodes = nodes.concat(d);
       if(! d.children) return null;
-      for(var i =1; i< d.children.length; i++) {
+      for(var i =0; i< d.children.length; i++) {
           var res = getNodes(node_names, d.children[i]);
           if(res !== null)
               nodes = nodes.concat(res);
@@ -109,7 +109,7 @@
   
   function common_ancestor(keywords) {
       //TODO find common ancestor
-      var nodes = getNodes(keywords.replace(/\s/g, "").split(","), root);
+      var nodes = getNodes(keywords.replace(/\s/g, "").split(","), inaltered_Root);
       console.log(nodes);
       return nodes[0];
   }
@@ -288,8 +288,9 @@
         if(search_field.value.length !== 0) {
             console.log("searching '" + search_field.value + "'");
             var new_node = common_ancestor(search_field.value);
-            //if(d.parent) transition(inaltered_Root);
-            //transition(new_node);
+            d = new_node;
+            search_field.value = "";
+            transition(d);
         }
 
        
