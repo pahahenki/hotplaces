@@ -22,6 +22,7 @@
     root.dx = width;
     root.dy = height;
     root.depth = 0;
+    root.id = "g5k";
   }
  
  /*
@@ -33,9 +34,16 @@
 
   function accumulate(d) {
     nodes.push(d);
+    if(d.children) {
+        return d.value = d.children.reduce(function(p, v) { return p + accumulate(v); }, 0);
+    } else {
+        return 1;
+    }
+    /*
     return d.children
         ?  d.value = d.children.reduce(function(p, v) { return p + accumulate(v); }, 0)
         : 1;
+  */
   }
  
  
@@ -52,8 +60,11 @@
   */
   // 
   function layout(d) {
+    if(d.parent)
+        d.id = "" + d.parent.id + "." + d.name;
     if (d.children) {
       treemap.nodes({children: d.children});
+      
       d.children.forEach(function(c) {
         c.x = d.x + c.x * d.dx;
         c.y = d.y + c.y * d.dy;
@@ -107,11 +118,48 @@
       return nodes;
   }
   
+  //Return Lowest Common Ancestor (LCA)
   function common_ancestor(keywords) {
-      //TODO find common ancestor
       var nodes = getNodes(keywords.replace(/\s/g, "").split(","), inaltered_Root);
-      console.log(nodes);
-      return nodes[0];
+      
+      //if no result
+      if(nodes.length === 0) return null;
+      
+      //if only one result
+      if(nodes.length === 1) return nodes[0].parent; 
+      
+      var path = nodes[0].id.split(".");
+      var path_divergence = 0;
+      
+      //Compare nodes id to the path and spot where they differ
+      for(var i=0; i< path.length; i++) {
+          for(var j=1; j< nodes.length; j++) {
+              var id = nodes[j].id.split(".");
+              if(path[i] !== id[i]) {
+                  path_divergence = i;
+                  break;
+              }
+          }
+          if(path_divergence !== 0) break;
+      }
+      
+      //if first result is the LCA
+      if(path_divergence === 0) {
+          return nodes[0].parent? nodes[0].parent : nodes[0];
+      }
+
+      //Get to the LCA from the root
+      var tmpNode = inaltered_Root;
+      for(var i =1; i< path_divergence ; i++) {
+          for(var j=0;j<tmpNode.children.length; j++) {
+              if(tmpNode.children[j].name === path[i]) {
+                  tmpNode = tmpNode.children[j];
+                  break;
+              }
+          }
+      }
+      
+      return tmpNode;
   }
   
    /*
@@ -143,6 +191,7 @@
         
   });
 */
+document.getElementById("count").checked = true;
 var radios = document.search_form.mode;
 for (i in radios) {
     radios[i].onclick = function() {
@@ -157,18 +206,18 @@ for (i in radios) {
             transitioning = false;
         });
         display(currentRoot);
-    }
+    };
 }
 
 document.search_form.search_button.onclick = function() {
     launch_search = true;
-    display(inaltered_Root);
+    display(currentRoot);
 };
 
 document.search_form.search_field.onkeypress = function() {
     if(window.event.keyCode === 13) {
         launch_search = true;
-        display(inaltered_Root);
+        display(currentRoot);
     }
 };
 
@@ -179,9 +228,9 @@ document.search_form.search_field.onkeypress = function() {
   * description : displays a node with its components
   */
   function display(d) {
-
-	  
     
+    //if(d.parent) d.id = "" + d.parent.id + "." + d.name;
+    console.log(d.id);
     // create attribute depth
     var g1 = svg.insert("g", ".grandparent")
         .datum(d.children)
@@ -268,6 +317,7 @@ document.search_form.search_field.onkeypress = function() {
 
   
     function transition(d) {
+        currentRoot = d;
         remove();
         unHighLight(undefined);
             if (transitioning || !d)
@@ -316,11 +366,13 @@ document.search_form.search_field.onkeypress = function() {
         //search function
         var search_field = document.search_form.search_field;
         if(launch_search && search_field.value.length !== 0) {
-            console.log("searching '" + search_field.value + "'");
             var new_node = common_ancestor(search_field.value);
-            d = new_node;
             search_field.value = "";
-            transition(d);
+            if(new_node !== null && new_node !== d) {
+                d = new_node;
+                currentRoot = d;
+                transition(d);
+            }
         }
         launch_search = false;
 
