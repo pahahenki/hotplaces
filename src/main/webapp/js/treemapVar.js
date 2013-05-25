@@ -1,5 +1,6 @@
 var root;
 var currentRoot;
+var inaltered_Root;
 
 var nodes= [] ;
 

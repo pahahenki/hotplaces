@@ -127,8 +127,8 @@
     return gc;
 
   }
- 
-  d3.selectAll("input").on("change", function change() {
+ /*
+  d3.selectAll("input").on("click", function change() {
     var value = this.value === "count"
         ? treemap.value(function(d) { return 2000 })
         : treemap.value(function(d) { return d.ressource });
@@ -142,6 +142,36 @@
         display(currentRoot);
         
   });
+*/
+var radios = document.search_form.mode;
+for (i in radios) {
+    radios[i].onclick = function() {
+
+        this.value === "count"? treemap.value(function(d) { return 2000; })
+        : treemap.value(function(d) { return d.ressource; });
+        
+        accumulate(currentRoot);
+        layout(currentRoot);
+        gOld.transition().duration(300).remove().each("end", function() {
+            svg.style("shape-rendering", null);
+            transitioning = false;
+        });
+        display(currentRoot);
+    }
+}
+
+document.search_form.search_button.onclick = function() {
+    launch_search = true;
+    display(inaltered_Root);
+};
+
+document.search_form.search_field.onkeypress = function() {
+    if(window.event.keyCode === 13) {
+        launch_search = true;
+        display(inaltered_Root);
+    }
+};
+
  
  /*
   * function
@@ -284,14 +314,15 @@
         }
         
         //search function
-        var search_field = document.getElementById('search_field');
-        if(search_field.value.length !== 0) {
+        var search_field = document.search_form.search_field;
+        if(launch_search && search_field.value.length !== 0) {
             console.log("searching '" + search_field.value + "'");
             var new_node = common_ancestor(search_field.value);
             d = new_node;
             search_field.value = "";
             transition(d);
         }
+        launch_search = false;
 
        
         
