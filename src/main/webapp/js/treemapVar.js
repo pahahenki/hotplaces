@@ -69,3 +69,5 @@ var grandparent = svg.append("g")
 
 //current element hignlighted
 var memEletSelect ;
+
+var foundColor = "#FFF700";

@@ -39,11 +39,6 @@
     } else {
         return 1;
     }
-    /*
-    return d.children
-        ?  d.value = d.children.reduce(function(p, v) { return p + accumulate(v); }, 0)
-        : 1;
-  */
   }
  
  
@@ -60,6 +55,8 @@
   */
   // 
   function layout(d) {
+    if(d.color !== foundColor)
+        d.color = "#109D00";
     if(d.parent)
         d.id = "" + d.parent.id + "." + d.name;
     if (d.children) {
@@ -108,7 +105,12 @@
   //Returns the nodes that matches the node_names search
   function getNodes(node_names, d) {
       var nodes = Array();
-      if(isIn(node_names,d.name)) nodes = nodes.concat(d);
+      if(isIn(node_names,d.name)) {
+          nodes = nodes.concat(d);
+          d.color = foundColor;
+          for(i in d.children)
+              d.children[i].color = "yellow";
+      }
       if(! d.children) return null;
       for(var i =0; i< d.children.length; i++) {
           var res = getNodes(node_names, d.children[i]);
@@ -162,19 +164,6 @@
       return tmpNode;
   }
   
-   /*
-  * function
-  * parameters : node
-  * description : returns an array of the node's grandchildren
-  */
-  function grandChildren(d) {
-    var gc = Array();
-    for(var i in d.children) {
-        gc = gc.concat(d.children[i].children);
-    }
-    return gc;
-
-  }
  /*
   d3.selectAll("input").on("click", function change() {
     var value = this.value === "count"
@@ -229,7 +218,6 @@ document.search_form.search_field.onkeypress = function() {
   */
   function display(d) {
     
-    //if(d.parent) d.id = "" + d.parent.id + "." + d.name;
     console.log(d.id);
     // create attribute depth
     var g1 = svg.insert("g", ".grandparent")
@@ -301,7 +289,7 @@ document.search_form.search_field.onkeypress = function() {
         .data(function(d) { return d.children || [d]; })
         .enter().append("text")
         .attr("class", "textChild")
-        //.text(function(d) { return x(d.dx)>30? d.name: null; })
+        //.text(function(d) { return x(d.dx)>30? d.name: ""; })
         .text(function(d) { return d.name;})
         .attr("dy", ".75em")
         .attr("lengthAdjust", "spacingAndGlyphs")
@@ -320,13 +308,13 @@ document.search_form.search_field.onkeypress = function() {
         currentRoot = d;
         remove();
         unHighLight(undefined);
-            if (transitioning || !d)
-                return;
-            transitioning = true;
+        if (transitioning || !d)
+            return;
+        transitioning = true;
             
-            var g2 = display(d),
-                    t1 = g1.transition().duration(300),
-                    t2 = g2.transition().duration(300);
+        var g2 = display(d),
+            t1 = g1.transition().duration(300),
+            t2 = g2.transition().duration(300);
 
             // Update the domain only after entering new elements.
             x.domain([d.x, d.x + d.dx]);
@@ -347,7 +335,11 @@ document.search_form.search_field.onkeypress = function() {
             // Transition to the new view.
             t1.selectAll("text").call(text).style("fill-opacity", 0);
             t2.selectAll(".textChildren").call(text).style("fill-opacity", 1);
-            t2.selectAll(".textChild").call(textChild).style("fill-opacity", 1);
+            t2.selectAll(".textChild").call(textChild).style("fill-opacity", function(d) {
+                if(d.parent.parent.children.length>15) return 0;
+                return d.parent.children.length<20? 1: 0;
+            
+            });
             t1.selectAll("rect").call(rect);
             t2.selectAll("rect").call(rect);
 
@@ -356,7 +348,7 @@ document.search_form.search_field.onkeypress = function() {
                 svg.style("shape-rendering", null);
                 transitioning = false;
             });
-
+            
             currentRoot= d;
 
             
@@ -375,7 +367,7 @@ document.search_form.search_field.onkeypress = function() {
             }
         }
         launch_search = false;
-
+        
        
         
         /*
@@ -408,7 +400,9 @@ document.search_form.search_field.onkeypress = function() {
   function text(text) {
     text.attr("x", function(d) { return x(d.x+d.dx/2) ; })
         .attr("y", function(d) { return y(d.y) + 6; })
-        .style("font-size",function(d) { return d.parent.children.length<20? "x-large": "medium";});
+        .style("font-size",function(d) { return d.parent.children.length<20? "x-large": "medium";})
+        
+;
   }
   
    /*
@@ -417,7 +411,9 @@ document.search_form.search_field.onkeypress = function() {
     */
    function textChild(text) {
     text.attr("x", function(d) { return x(d.x) +6  ;})
-        .attr("y", function(d) { return y(d.y) + 6; });
+        .attr("y", function(d) { return y(d.y) + 6; })
+        .style("fill-opacity", function(d) {return d.parent.children.length<20? 1: 0;})
+;
   }
  
   /*
@@ -429,7 +425,8 @@ document.search_form.search_field.onkeypress = function() {
         .attr("y", function(d) { return y(d.y); })
         .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
         .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-        .style("fill", "#109D00" );
+        //.style("fill", "#109D00" );
+        .style("fill", function(d) { return d.color; });
         //.style("fill", function(d) { return color(d.name); });
   }
   
