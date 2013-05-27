@@ -45,7 +45,7 @@ function contextualMenu(d) {
         depth++;
     }
     names.reverse();
-    str = names.join(".");
+    str = names.join(".") + " " + treeDepth(d);
     pop(str);
 }
 

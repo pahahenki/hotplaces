@@ -1,3 +1,4 @@
+var pad = 3, pas =1;
 /*
  * function
  * parameters : URI, callback function
@@ -53,13 +54,25 @@
   // 
   function layout(d) {
     if (d.children) {
+    	console.log(pad);
+    	var padding= pad-pas*(treeDepth(d)+1);
+    	padding <0? padding= 0: padding=padding;
       treemap.nodes({children: d.children});
       d.children.forEach(function(c) {
+      //treeDepth(c)< 3? console.log(c.name + " " + treeDepth(c) + " "+  treeDepth(c)%3): null;
         c.x = d.x + c.x * d.dx;
         c.y = d.y + c.y * d.dy;
         c.dx *= d.dx;
         c.dy *= d.dy;
         c.parent = d;
+        });
+        
+      d.children.forEach(function(c) {
+
+        c.x +=padding;
+        c.y +=padding;
+        c.dx -=(padding*2);
+        c.dy -=(padding*2);
         
         layout(c);
       });
@@ -147,7 +160,7 @@
     // sets parameters for parent "rect" tag
     g.append("rect")
         .attr("class", "parent")
-        .attr("stroke-width", "12")
+        //.attr("stroke-width", "1")
         .call(rect)
         .append("title")
         .text(function(d) { return d.name; })
@@ -167,7 +180,7 @@
 ;
 
     g2.append("rect").attr("class", "grandChildren")
-        .attr("stroke-width", "5")
+       // .attr("stroke-width", "5")
         .call(rect)
 ;
         
@@ -177,7 +190,7 @@
         .enter()
         .append("rect")
         .attr("class",  "grandChild")
-        .attr("stroke-width", "1")
+        //.attr("stroke-width", "1")
         .call(rect)
         .on("mouseout", function(d) {remove();})
         .on("mouseover", function(d) {contextualMenu(d);})
@@ -211,13 +224,16 @@
      */
 
   
-    function transition(d) {
+	function transition(d) {
+		console.log(d + " " + treeDepth(d));
+		treeDepth(d)>0 ? (pad = 2, pas = 0.5):(pad = 3, pas = 1);
+	    layout(d);
         remove();
         unHighLight(undefined);
             if (transitioning || !d)
                 return;
             transitioning = true;
-            
+            //layout(d);
             var g2 = display(d),
                     t1 = g1.transition().duration(300),
                     t2 = g2.transition().duration(300);
@@ -259,7 +275,6 @@
         
         //search function
         var search_field = document.getElementById('search_field');
-        console.log("transistion vers " + search_field.value);
         if(search_field.value.length !== 0)
             transition(root);
         
@@ -314,7 +329,7 @@
         .attr("y", function(d) { return y(d.y); })
         .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
         .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-        .style("fill", "#109D00" );
+        .style("fill", function(d){ return this.getAttribute('class')==='grandChild'?  "#109D00" : "#FFF" });
         //.style("fill", function(d) { return color(d.name); });
   }
   
